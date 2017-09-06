@@ -10,8 +10,10 @@ echo "  "
 echo "  "
 
 #code for directories
-var_path=`pwd`
-echo 'current directory: ' $var_path
+rundir=$(gawk '/rundir/{print $2}' setups/IcemcQCParameters.txt)
+curr_dir=$(pwd)
+path_dir=$curr_dir/$rundir
+echo 'current directory: ' $curr_dir
 
 
 #commands to make icemc once it is installed
@@ -19,18 +21,12 @@ echo 'current directory: ' $var_path
 #source environment variables
 source $HOME/env_anita.sh
 
-#find if icemc is installed
-#find $HOME -type d -name "icemc" | $HOME/icemc &> log_find_icemc.txt
-#grep 'No' log_find_icemc.txt
-#findstat=$?
-#echo 'the find icemc value is '$findstat
-
 if [ $findstat -eq 1 ]; then
      echo " "
      echo "found icemc"
      echo " "
-     cd $HOME/ICEMCQC/icemc/
-     git pull &>> $var_path/log_icemc_changes.txt
+     cd $path_dir/icemc
+     git pull &>> $curr_dir/log_icemc_changes.txt
      make clean
      make &>> log_make_out.txt
      git log &> log_commit_history.txt
@@ -41,9 +37,9 @@ elif [ $findstat -eq 0 ]; then
      echo " "
      echo "did not find icemc"
      echo " "
-     cd $HOME/ICEMCQC/
+     cd $path_dir
      git clone https://github.com/anitaNeutrino/icemc.git
-     cd $HOME/ICEMCQC/icemc/
+     cd $path_dir/icemc
      make &> log_make_out.txt
      git log &> log_commit_history.txt
      echo "made icemc"
