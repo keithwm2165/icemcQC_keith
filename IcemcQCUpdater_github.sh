@@ -33,6 +33,7 @@ if [ $findstat -eq 1 ]; then
      echo " "
      echo "made icemc"
      echo " "
+     cd $curr_dir
 elif [ $findstat -eq 0 ]; then
      echo " "
      echo "did not find icemc"
@@ -43,6 +44,7 @@ elif [ $findstat -eq 0 ]; then
      make &> log_make_out.txt
      git log &> log_commit_history.txt
      echo "made icemc"
+     cd $curr_dir
 else
      echo "error! abort!"
 fi
