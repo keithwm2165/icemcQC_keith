@@ -1,3 +1,4 @@
+#!/bin/bash
 #This is a test script for using github to download or pull icemc
 #and then making it. 
 # Keith McBride
@@ -19,7 +20,12 @@ echo 'current directory: ' $curr_dir
 #commands to make icemc once it is installed
 
 #source environment variables
-source $HOME/env_anita_test2.sh
+export ANITA_UTIL_INSTALL_DIR=/home/mcbride.342/anitaBuildTool/Utils
+export ICEMC_SRC_DIR=pwd
+export ICEMC_BUILD_DIR=pwd
+export LD_LIBRARY_PATH=${ICEMC_BUILD_DIR}:${LD_LIBRARY_PATH}
+
+
 
 if [ $findstat -eq 1 ]; then
      echo " "
