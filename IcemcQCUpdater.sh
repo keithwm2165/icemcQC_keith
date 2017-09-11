@@ -21,8 +21,8 @@ echo 'current directory: ' $curr_dir
 
 #source environment variables
 export ANITA_UTIL_INSTALL_DIR=/home/mcbride.342/anitaBuildTool/Utils
-export ICEMC_SRC_DIR=pwd
-export ICEMC_BUILD_DIR=pwd
+export ICEMC_SRC_DIR=$path_dir/icemc
+export ICEMC_BUILD_DIR=$path_dir/icemc
 export LD_LIBRARY_PATH=${ICEMC_BUILD_DIR}:${LD_LIBRARY_PATH}
 
 
