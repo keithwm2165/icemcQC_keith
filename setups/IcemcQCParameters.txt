@@ -8,11 +8,7 @@ svnuser: hughes
 
 Setup files:
 #runs	filename. t x t
-10		input_anita1_20.txt
-10		input_anita1_21.txt
-#10		input_anita2_19.t x t
-#3		setupP25.t x t
-#2		setupP50.t x t
+10 inputs_anita3.txt
 
 Plotting files:
 script readPrimaries.cc
