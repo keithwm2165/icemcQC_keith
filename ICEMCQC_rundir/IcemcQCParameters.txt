@@ -1,0 +1,57 @@
+IcemcQC setup parameters
+
+mode: automatic
+rundir: ICEMCQC_rundir
+tgtdir: outputs 
+#below, need to change for github as the username here is used in svn language
+svnuser: hughes 
+
+Setup files:
+#runs	filename. t x t
+10 inputs_anita3.txt
+
+Plotting files:
+script readPrimaries.cc
+
+dwell: 20 
+
+#NOTES ON PARAMETERS:
+
+#MODE
+#This field MUST be 'AUTOMATIC' or 'MANUAL'  (in lower case letters).
+#AUTOMATIC- downloads all updates to Icemc or installs 
+#latest versions in RUNDIR/update/, then runs IcemcQC 
+#on any updated trunks and/or releases
+#MANUAL - runs IcemcQC on the version of Icemc installed 
+#in the RUNDIR directory
+
+#RUNDIR
+#Do NOT include a name.number here (ie, do NOT include 
+#hendricks.189)
+#This should be the path from your home directory ( ~ ) to 
+#the directory from which you want to use IcemcQC.  If you 
+#are using AUTOMATIC MODE, #IcemcQC will update/install 
+#Icemc to this directory under RUNDIR/update/.  If you are 
+#using MANUAL MODE, this should be the path of the directory 
+#that contains the version of Icemc you want to run 
+#IcemcQC on. 
+
+#TGTDIR
+#This should be the path from your home to the directory 
+#where you want to store the final plots, outputs, and 
+#other products.  Do NOT include a name.number here
+
+#SVNUSER
+#This is your Icemc svn user, NOT your OSU last name + dot 
+
+#SETUP FILES
+#DO NOT USE "." in the setup file name except for the extension!
+#You MUST use the . t x t extension (no spaces) as that is what 
+#IcemcQC is looking for. 
+
+#PLOTTING FILES
+#Include the *. cc or *. c extension (no spaces).
+
+#DWELL
+#This is the amount of time IcemcQC waits between checks to see 
+#if jobs are done.

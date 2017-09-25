@@ -1,0 +1,20 @@
+Wed Sep 20 12:39:25 EDT 2017
+Initial queue listing:
+ACTIVE JOBS--------------------
+JOBNAME            USERNAME      STATE  PROC   REMAINING            STARTTIME
+
+
+     0 Active Jobs       0 of  136 Processors Active (0.00%)
+                         0 of    5 Nodes Active      (0.00%)
+
+IDLE JOBS----------------------
+JOBNAME            USERNAME      STATE  PROC     WCLIMIT            QUEUETIME
+
+
+0 Idle Jobs
+
+BLOCKED JOBS----------------
+JOBNAME            USERNAME      STATE  PROC     WCLIMIT            QUEUETIME
+
+
+Total Jobs: 0   Active Jobs: 0   Idle Jobs: 0   Blocked Jobs: 0

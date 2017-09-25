@@ -1,0 +1,780 @@
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <math.h>
+#include <string>
+#include <stdio.h>
+#include <stdlib.h>
+#include <vector>
+#include <time.h>
+#include "TTreeIndex.h"
+#include "TChain.h"
+#include "TH1.h"
+#include "TF1.h"
+#include "TF2.h"
+#include "TFile.h"
+#include "TRandom.h"
+#include "TRandom2.h"
+#include "TRandom3.h"
+#include "TTree.h"
+#include "TLegend.h"
+#include "TLine.h"
+#include "TROOT.h"
+#include "TPostScript.h"
+#include "TCanvas.h"
+#include "TH2F.h"
+#include "TText.h"
+#include "TProfile.h"
+#include "TGraphErrors.h"
+#include "TStyle.h"
+#include "TMath.h"
+#include <unistd.h>
+#include "TVector3.h"
+#include "TRotation.h"
+#include "TSpline.h"
+#include "Math/InterpolationTypes.h"
+#include "Math/Interpolator.h"
+#include "signal.h"
+
+#include "TGaxis.h"
+#include "TPaveStats.h"
+
+#include "Constants.h"
+#include "Settings.h"
+#include "position.hh"
+#include "earthmodel.hh"
+#include "Tools.h"
+#include "vector.hh"
+#include "roughness.hh"
+#include "anita.hh"
+#include "balloon.hh"
+#include "icemodel.hh"
+#include "trigger.hh"
+#include "Spectra.h"
+#include "signal.hh"
+#include "secondaries.hh"
+#include "ray.hh"
+#include "counting.hh"
+#include "Primaries.h"
+#include "Taumodel.hh"
+
+//#include <vector>
+
+using namespace std;
+
+
+
+
+int NNU;
+double RANDOMISEPOL;
+
+int main(int argc, char *argv[])
+{
+	string readfile;
+	if(argc<2)
+	  {
+	    readfile="outputs/icefinal.root";
+	  }
+	if(argc==2)
+	  {
+	    readfile=argv[1];
+	  }
+	
+	TFile *AnitaFile = new TFile(( readfile ).c_str());
+	cout << "AnitaFile" << endl;
+	
+	
+	////////////////////////////////////////////////////////////////////////
+	// Only Passing Events
+	////////////////////////////////////////////////////////////////////////
+	
+	//Define Variables for tree:
+	int num_pass;//number of passing events 
+	double posnu[3];//position of passing events 
+	double nupass[3];//trajectory of passing events
+	double horizcoord;//x coordinate of event
+	double vertcoord;//y cooridnate of event
+	double horizcoord_bn;//x coordinate of balloon
+	double vertcoord_bn;//y coordinate of balloon
+	double weight;//weight of passing events
+	double pnu; //energy of neutrinos
+	double emfrac;
+	double hadfrac;
+	double sumfrac;
+
+	int nuflavor;
+	int current;
+	double costheta_nutraject;
+
+	//get "passing_events" tree from AnitaFile and set branch addresses
+	TTree *passing_events= (TTree*)AnitaFile->Get("passing_events");
+	passing_events->SetBranchAddress("posnu", &posnu);
+	passing_events->SetBranchAddress("nnu", &nupass);
+	passing_events->SetBranchAddress("horizcoord", &horizcoord);
+	passing_events->SetBranchAddress("vertcoord", &vertcoord);
+	passing_events->SetBranchAddress("horizcoord_bn", &horizcoord_bn);
+	passing_events->SetBranchAddress("vertcoord_bn", &vertcoord_bn);
+	passing_events->SetBranchAddress("weight1", &weight);
+	passing_events->SetBranchAddress("pnu", &pnu);
+	passing_events->SetBranchAddress("emfrac", &emfrac);
+	passing_events->SetBranchAddress("hadfrac", &hadfrac);
+	passing_events->SetBranchAddress("sumfrac", &sumfrac);
+	passing_events->SetBranchAddress("nuflavor", &nuflavor);
+	passing_events->SetBranchAddress("current", &current);
+	passing_events->SetBranchAddress("costheta_nutraject", &costheta_nutraject);
+
+	num_pass= passing_events->GetEntries();
+	cout << "num_pass is " << num_pass << endl;//check how many passing events there are
+
+
+	//Define arrays that will be used for graphing purposes
+	double posnu_x[num_pass];
+	double posnu_y[num_pass];
+	double posnu_z[num_pass];
+
+
+	double dir_x[num_pass];
+	double dir_y[num_pass];
+	double dir_z[num_pass];
+
+	double horiz_array[num_pass];
+	double vert_array[num_pass];
+
+	double horizbn_array[num_pass];
+	double vertbn_array[num_pass];
+
+	double weight_array[num_pass];
+
+	double pnu_array[num_pass];
+
+	double num_array[num_pass];
+
+	double emfrac_array[num_pass];
+	double hadfrac_array[num_pass];
+	double sumfrac_array[num_pass];
+
+
+	double nuflavor_array[num_pass];
+
+	double current_array[num_pass];
+	
+	double costheta_array[num_pass];
+
+
+	cout << "num_pass is " << num_pass << endl;
+
+	
+	//fill arrays with data
+	for (int j=0; j<num_pass; j++)
+	  {
+	    passing_events->GetEvent(j);
+
+	    posnu_x[j]=posnu[0];
+	    posnu_y[j]=posnu[1];
+	    posnu_z[j]=posnu[2];
+
+	    dir_x[j]=nupass[0];
+	    dir_y[j]=nupass[1];
+	    dir_z[j]=nupass[2];
+
+	    horiz_array[j]=horizcoord;
+	    vert_array[j]=vertcoord;
+
+	    horizbn_array[j]=horizcoord_bn;
+	    vertbn_array[j]=vertcoord_bn;
+	 
+	    weight_array[j]=weight;
+
+	    pnu_array[j]=pnu;
+
+	    num_array[j]=j;
+
+	    emfrac_array[j]=emfrac;
+	    hadfrac_array[j]=hadfrac;
+	    sumfrac_array[j]=sumfrac;
+
+
+
+	    nuflavor_array[j]=nuflavor;
+	    current_array[j]=current;
+
+	    costheta_array[j]=costheta_nutraject;
+
+	  }
+
+	
+	//TCanvas c2 is created for the three position graphs
+
+	TCanvas *c2 = new TCanvas("c2", "Posnu Graphs", 6000, 2000);
+	c2->Divide(3);
+
+	TGraph *gr_posXY;
+	gr_posXY = new TGraph(num_pass, posnu_x, posnu_y);
+
+	c2->cd(1);
+	gr_posXY->SetTitle("posnuXY");
+	gr_posXY->GetHistogram()->SetXTitle("X (m)");
+	gr_posXY->GetHistogram()->SetYTitle("Y (m)");
+	gr_posXY->GetYaxis()->SetTitleOffset(1.2);
+	gr_posXY->Draw("a*");
+	
+
+	c2->cd(2);
+	TGraph *gr_posYZ;
+	gr_posYZ = new TGraph(num_pass, posnu_y, posnu_z);
+	gr_posYZ->SetTitle("posnuYZ");
+	gr_posYZ->GetHistogram()->SetXTitle("y (m)");
+	gr_posYZ->GetHistogram()->SetYTitle("z (m)");
+	gr_posYZ->GetYaxis()->SetTitleOffset(1.2);
+	gr_posYZ->Draw("a*");
+
+
+	c2->cd(3);
+	TGraph *gr_posXZ;
+	gr_posXZ = new TGraph(num_pass, posnu_x, posnu_z);
+	gr_posXZ->SetTitle("posnuXZ");
+	gr_posXZ->GetHistogram()->SetXTitle("X (m)");
+	gr_posXZ->GetHistogram()->SetYTitle("Z (m)");
+	gr_posXZ->GetYaxis()->SetTitleOffset(1.2);
+	gr_posXZ->Draw("a*");
+	
+	
+	c2->Print("plots/K_Event_Position.pdf");
+	
+	//TCanvas c3 is created for the three trajectory graphs
+
+	TCanvas *c3 = new TCanvas("c3", "NuPass Graphs", 6000,2000);
+	c3->Divide(3);
+	
+
+	c3->cd(1);
+	TGraph *gr_dirXY;
+	gr_dirXY = new TGraph(num_pass, dir_x, dir_y);
+	gr_dirXY->SetTitle("nu traj XY");
+	gr_dirXY->GetHistogram()->SetXTitle("X (m/s)");
+	gr_dirXY->GetHistogram()->SetYTitle("Y (m/s)");
+	gr_dirXY->GetYaxis()->SetTitleOffset(1.2);
+	gr_dirXY->Draw("a*");
+	
+	c3->cd(2);
+	TGraph *gr_dirYZ;
+	gr_dirYZ = new TGraph(num_pass, dir_y,dir_z);
+	gr_dirYZ->SetTitle("nu traj YZ");
+	gr_dirYZ->GetHistogram()->SetXTitle("Y (m/s)");
+	gr_dirYZ->GetHistogram()->SetYTitle("Z (m/s)");
+	gr_dirYZ->GetYaxis()->SetTitleOffset(1.2);
+	gr_dirYZ->Draw("a*");
+
+	c3->cd(3);
+	TGraph *gr_dirXZ;
+	gr_dirXZ = new TGraph(num_pass, dir_x, dir_z);
+	gr_dirXZ->SetTitle("nu traj XZ");
+	gr_dirXZ->GetHistogram()->SetXTitle("X (m/s)");
+	gr_dirXZ->GetHistogram()->SetYTitle("Z (m/s)");
+	gr_dirXZ->GetYaxis()->SetTitleOffset(1.2);
+	gr_dirXZ->Draw("a*");
+
+	c3->Print("plots/K_Event_Direction.pdf");
+	
+
+	//TCanvas c4 is created for the x and y coordinates of both the events and the balloon
+
+	TCanvas *c4 = new TCanvas("c4", "horizcoord and vertcoord", 6000, 2000);
+	c4->Divide(2);
+
+	c4->cd(1);
+	TGraph *gr_nucoord;//this graph should be the same as gr_posXY from above
+	gr_nucoord = new TGraph(num_pass,horiz_array, vert_array);
+	gr_nucoord->SetTitle("Coordinates of Interaction");
+	gr_nucoord->GetHistogram()->SetXTitle("X Coord");
+	gr_nucoord->GetHistogram()->SetYTitle("Y Coord");
+	gr_nucoord->GetYaxis()->SetTitleOffset(1.2);
+	gr_nucoord->Draw("a*");
+	
+
+	c4->cd(2);
+	TGraph *gr_bncoord;
+	gr_bncoord = new TGraph(num_pass, horizbn_array, vertbn_array);
+	gr_bncoord->SetTitle("Coordinates of Balloon");
+	gr_bncoord->GetHistogram()->SetXTitle("X Coord");
+	gr_bncoord->GetHistogram()->SetYTitle("Y Coord");
+	gr_bncoord->GetYaxis()->SetTitleOffset(1.2);
+	gr_bncoord->Draw("a*");
+
+	c4->Print("plots/K_Coordinates.pdf");
+
+	//TCanvas c5 is created for the weight histograms
+
+	TCanvas *c5 = new TCanvas("c5", "Weight Histograms", 32000, 8000);
+	c5->Divide(3);
+
+
+	int limit = 2000000;
+
+
+	//gStyle->SetPalette(51,0); this will change colors to all shades of blue instead of rainbow
+	/*	c5->cd(1);
+	TH1F *weight_hist = new TH1F("weight_hist", "Weight of Events", 100, 0, 1);
+
+	for (int k=0; k<num_pass; k++)
+	  {
+	    weight_hist->Fill(weight_array[k]);
+	  }
+	weight_hist->GetXaxis()->SetTitle("Weight");
+	weight_hist->GetYaxis()->SetTitle("Number of Events");
+	weight_hist->GetYaxis()->SetTitleOffset(1.5);
+	weight_hist->Draw();*/
+
+	c5->cd(1);
+	TH2F *xy_weight = new TH2F("xy_weight", "xy_weight_hist", 25, -limit, limit, 25, -limit, limit);
+
+	for (int k=0; k<num_pass; k++)
+	  {
+	    xy_weight->Fill(posnu_x[k], posnu_y[k], weight_array[k]);
+
+	  }
+	xy_weight->Draw("colz");
+	xy_weight->GetXaxis()->SetTitle("X");
+	xy_weight->GetYaxis()->SetTitle("Y");
+	xy_weight->GetYaxis()->SetTitleOffset(1.7);
+
+	
+	c5->cd(2);
+	TH2F *yz_weight = new TH2F("yz_weight", "yz_weight_hist", 25, -limit, limit, 25, 6050000, 6400000);
+      
+	for (int m=0; m<num_pass; m++)
+	  {
+	    yz_weight->Fill(posnu_y[m], posnu_z[m], weight_array[m]);
+
+	  }
+	
+        yz_weight->Draw("colz");
+	yz_weight->GetXaxis()->SetTitle("Y");
+	yz_weight->GetYaxis()->SetTitle("Z");
+	yz_weight->GetYaxis()->SetTitleOffset(1.6);
+	
+	c5->cd(3);
+	TH2F *xz_weight = new TH2F("xz_weight", "xz_weight_hist", 25, -limit, limit, 25, 6050000, 6400000);
+
+	for (int k=0; k<num_pass; k++)
+	  {
+	    xz_weight->Fill(posnu_x[k], posnu_z[k], weight_array[k]);
+
+	  }
+
+	xz_weight->Draw("colz");
+	xz_weight->GetXaxis()->SetTitle("X");
+	xz_weight->GetYaxis()->SetTitle("Z");
+	xz_weight->GetYaxis()->SetTitleOffset(1.6);
+
+	c5->Print("plots/K_Position_Weight_Histogram.pdf");
+
+	
+	TCanvas *c6 = new TCanvas("c6", "Weight Histograms for Direction", 32000, 8000);
+	c6->Divide(3);
+
+	c6->cd(1);
+	TH2F *xydir_hist = new TH2F("xydir_hist", "xydir_hist", 25, -1, 1, 25, -1, 1);
+	
+	for (int k=0; k<num_pass; k++)
+	  {
+	    xydir_hist->Fill(dir_x[k], dir_y[k], weight_array[k]);
+	  }
+	xydir_hist->Draw("colz");
+	xydir_hist->GetXaxis()->SetTitle("X (m/s)");
+	xydir_hist->GetYaxis()->SetTitle("Y (m/s)");
+	xydir_hist->GetYaxis()->SetTitleOffset(1.2);
+
+	c6->cd(2);
+	TH2F *yzdir_hist = new TH2F("yzdir_hist", "yzdir_hist", 25, -1, 1, 25, -.3, .4);
+
+	for (int k=0; k<num_pass; k++)
+	  {
+	    yzdir_hist->Fill(dir_y[k], dir_z[k], weight_array[k]);
+	  }
+	yzdir_hist->Draw("colz");
+	yzdir_hist->GetXaxis()->SetTitle("Y (m/s)");
+	yzdir_hist->GetYaxis()->SetTitle("Z (m/a)");
+	yzdir_hist->GetYaxis()->SetTitleOffset(1.2);
+	
+	c6->cd(3);
+	TH2F *xzdir_hist = new TH2F("xzdir_hist", "xzdir_hist", 25, -1, 1, 25, -.3, .4);
+	
+	for (int k=0; k<num_pass; k++)
+	  {
+	    xzdir_hist->Fill(dir_x[k], dir_z[k], weight_array[k]);
+	  }
+	xzdir_hist->Draw("colz");
+	xzdir_hist->GetXaxis()->SetTitle("X (m/s)");
+	xzdir_hist->GetYaxis()->SetTitle("Z (m/s)");
+	xzdir_hist->GetYaxis()->SetTitleOffset(1.2);
+	
+	c6->Print("plots/K_Direction_Weight_Histogram.pdf");
+
+
+	
+	////////////////////////////////////////////////////////////////
+	//Energy Graphs
+	////////////////////////////////////////////////////////////////
+
+	double e_emfrac;
+	double e_hadfrac;
+	double mu_emfrac;
+	double mu_hadfrac;
+	double tau_emfrac;
+	double tau_hadfrac;
+
+	int num_nue;
+	int num_numu;
+	int num_nutau;
+
+	/*
+        TTree *nu_e_tree = (TTree*)AnitaFile->Get("h18000");
+	nu_e_tree->SetBranchAddress("emfrac", &e_emfrac);
+	nu_e_tree->SetBranchAddress("hadfrac", &e_hadfrac);
+	num_nue=nu_e_tree->GetEntries();
+
+	cout << "num_nue is " << num_nue << endl;
+
+
+	TTree *nu_mu_tree = (TTree*)AnitaFile->Get("h19000");
+	nu_mu_tree->SetBranchAddress("emfrac", &mu_emfrac);
+	nu_mu_tree->SetBranchAddress("hadfrac", &mu_hadfrac);
+	num_numu=nu_mu_tree->GetEntries();
+	
+	TTree *nu_tau_tree = (TTree*)AnitaFile->Get("h20000");
+	nu_tau_tree->SetBranchAddress("emfrac", &tau_emfrac);
+	nu_tau_tree->SetBranchAddress("hadfrac", &tau_hadfrac);
+	num_nutau=nu_tau_tree->GetEntries();
+
+	double e_emarray[num_nue];
+	double e_hadarray[num_nue];
+	double mu_emarray[num_numu];
+	double mu_hadarray[num_numu];
+	double tau_emarray[num_nutau];
+	double tau_hadarray[num_nutau];
+
+	for (int i=0; i<num_nue; i++)
+	  {
+	    nu_e_tree->GetEvent(i);
+	    
+	    e_emarray[i]=e_emfrac;
+	    e_hadarray[i]=e_hadfrac;
+	  }
+	for (int i=0; i<num_numu; i++)
+	  {
+	    nu_mu_tree->GetEvent(i);
+
+	    mu_emarray[i]= mu_emfrac;
+	    mu_hadarray[i]=mu_hadfrac;
+	  }
+	for (int i=0; i<num_nutau; i++)
+	  {
+	    nu_tau_tree->GetEvent(i);
+
+	    tau_emarray[i]= tau_emfrac;
+	    tau_hadarray[i]=tau_hadfrac;
+	  }
+
+	TCanvas *c9 = new TCanvas("c9", "nu_flavors_energy", 32000, 8000);
+	c9->Divide(3);
+	
+	c9->cd(1);
+	TGraph *gr_nuefrac;
+	gr_nuefrac = new TGraph(num_nue, e_emarray, e_hadarray);
+
+	gr_nuefrac->SetTitle("hadfrac vs. emfrac for e nuetrinos");
+	gr_nuefrac->GetHistogram()->SetXTitle("emfrac");
+	gr_nuefrac->GetHistogram()->SetYTitle("hadfrac");
+	gr_nuefrac->Draw("a*");
+
+	c9->cd(2);
+	TGraph *gr_numufrac;
+	gr_numufrac = new TGraph(num_numu, mu_emarray, mu_hadarray);
+
+	gr_numufrac->SetTitle("hadfrac vs. emfrac for mu neutrinos");
+	gr_numufrac->GetHistogram()->SetXTitle("emfrac");
+	gr_numufrac->GetHistogram()->SetYTitle("hadfrac");
+	gr_numufrac->GetXaxis()->SetLimits(-.6,.6);
+	gr_numufrac->Draw("a*");
+
+	c9->cd(3);
+	TGraph *gr_nutaufrac;
+	gr_nutaufrac = new TGraph(num_nutau, tau_emarray, tau_hadarray);
+
+	gr_nutaufrac->SetTitle("hadfrac vs. emfrac for tau neutrinos");
+	gr_nutaufrac->GetHistogram()->SetXTitle("emfrac");
+	gr_nutaufrac->GetHistogram()->SetYTitle("hadfrac");
+	gr_nutaufrac->GetXaxis()->SetLimits(-.3,.3);
+	gr_nutaufrac->Draw("a*");
+	
+	c9->Print("plots/K_Energy_Fractions_Flavor.pdf");*/
+	
+	TCanvas *c10 = new TCanvas("c10", "energy vs. weight", 200, 10, 1000, 500);
+	c10->Divide(2);
+	
+	c10->cd(1);
+	TGraph *gr_pnuweight;
+	gr_pnuweight = new TGraph(num_pass, weight_array, pnu_array);
+	gr_pnuweight->SetTitle("Energy vs. Weight");
+	gr_pnuweight->GetHistogram()->SetXTitle("Weight");
+	gr_pnuweight->GetHistogram()->SetYTitle("Energy");
+	gr_pnuweight->GetYaxis()->SetTitleOffset(1.2);
+
+	gr_pnuweight->Draw("a*");
+	
+
+	c10->cd(2);
+	double pnu_log_array[num_pass];
+	double em_energy[num_pass];
+	double had_energy[num_pass];
+
+	for (int i=0; i<num_pass; i++)
+	  {
+	    pnu_log_array[i]= log10 (pnu_array[i]);
+
+	    em_energy[i]=log10 (pnu_array[i]*emfrac_array[i]);
+	    had_energy[i]=log10 (pnu_array[i]*hadfrac_array[i]);
+
+	    
+	  }
+
+	TGraph *gr_pnulog;
+	gr_pnulog = new TGraph(num_pass, weight_array, pnu_log_array);
+	gr_pnulog->SetTitle("logEnergy vs. Weight");
+	gr_pnulog->GetHistogram()->SetXTitle("Weight");
+	gr_pnulog->GetHistogram()->SetYTitle("log(Energy)");
+	gr_pnulog->GetYaxis()->SetTitleOffset(1.4);
+
+	gr_pnulog->Draw("a*");
+
+
+	c10->Print("plots/K_Energy_v_Weight.pdf");
+
+
+	TCanvas *c11 = new TCanvas("c11", "Energy Fractions vs. Weight", 200, 10, 1000, 500);
+	c11->Divide(2);
+
+
+	c11->cd(1);
+	TGraph *gr_em_energy;
+	gr_em_energy = new TGraph(num_pass, weight_array, em_energy);
+	
+	gr_em_energy->SetTitle("E em vs. Weight");
+	gr_em_energy->GetHistogram()->SetXTitle("Weight");
+	gr_em_energy->GetHistogram()->SetYTitle("Emfrac*Energy (log)");
+	gr_em_energy->GetYaxis()->SetTitleOffset(1.2);
+	gr_em_energy->Draw("a*");
+
+
+	c11->cd(2);
+	TGraph *gr_had_energy;
+	gr_had_energy = new TGraph(num_pass, weight_array, had_energy);
+	
+	gr_had_energy->SetTitle("E had vs. Weight");
+	gr_had_energy->GetHistogram()->SetXTitle("Weight");
+	gr_had_energy->GetHistogram()->SetYTitle("Hadfrac*Energy (log)");
+	gr_had_energy->GetYaxis()->SetTitleOffset(1.2);
+	gr_had_energy->Draw("a*");
+
+	c11->Print("plots/K_had_em_energy_vs_weight1.pdf");
+
+
+
+	double e_pnu_array[num_nue];
+	double e_weight_array[num_nue];
+	double tau_pnu_array[num_nutau];
+	double tau_weight_array[num_nutau];
+	double mu_pnu_array[num_numu];
+	double mu_weight_array[num_numu];
+
+
+
+	int ecount=0;
+	int taucount=0;
+	int mucount=0;
+
+	int neut_num=0;
+	int charg_num=0;
+	
+
+	for (int i=0; i<num_pass; i++)
+	  {
+	    if (nuflavor_array[i]==1)
+	      {
+		e_pnu_array[ecount]=pnu_log_array[i];
+		e_weight_array[ecount]=weight_array[i];
+		ecount++;
+	      }
+	    if (nuflavor_array[i]==2)
+	      {
+		mu_pnu_array[mucount]=pnu_log_array[i];
+		mu_weight_array[mucount]=weight_array[i];
+		mucount++;
+	      }
+	    if (nuflavor_array[i]==3)
+	      {
+		tau_pnu_array[taucount]=pnu_log_array[i];
+		tau_weight_array[taucount]=weight_array[i];
+		taucount++;
+	      }
+
+	    if(current_array[i]==0)
+	      {
+		neut_num++;
+	      }
+	    if(current_array[i]==1)
+	      {
+		charg_num++;
+	      }
+
+	  }
+
+
+
+	TCanvas  *c12 = new TCanvas("c12", "Energy vs. Weight with Flavors", 200, 10, 1500, 500);
+	c12->Divide(3);
+	
+	c12->cd(1);
+	TGraph *gr_energy_e;
+	gr_energy_e = new TGraph(ecount, e_weight_array, e_pnu_array);
+	
+	gr_energy_e->SetTitle("Energy vs. Weight, E Neutrinos");
+	gr_energy_e->GetHistogram()->SetXTitle("Weight");
+	gr_energy_e->GetHistogram()->SetYTitle("Energy");
+	gr_energy_e->GetYaxis()->SetTitleOffset(1.2);
+	gr_energy_e->Draw("a*");
+
+	c12->cd(2);
+	TGraph *gr_energy_mu;
+	gr_energy_mu = new TGraph(mucount, mu_weight_array, mu_pnu_array);
+
+	gr_energy_mu->SetTitle("Energy vs. Weight, Muon Neutrinos");
+	gr_energy_mu->GetHistogram()->SetXTitle("Weight");
+	gr_energy_mu->GetHistogram()->SetYTitle("Energy");
+	gr_energy_mu->GetYaxis()->SetTitleOffset(1.2);
+	gr_energy_mu->Draw("a*");
+	
+	c12->cd(3);
+	TGraph *gr_energy_tau;
+	gr_energy_tau = new TGraph(taucount, tau_weight_array, tau_pnu_array);
+	
+	gr_energy_tau->SetTitle("Energy vs. Weight, Tau Neutrinos");
+	gr_energy_tau->GetHistogram()->SetXTitle("Weight");
+	gr_energy_tau->GetHistogram()->SetYTitle("Energy");
+	gr_energy_tau->GetYaxis()->SetTitleOffset(1.2);
+	gr_energy_tau->Draw("a*");
+	
+	c12->Print("plots/K_Energy_Weight_Flavors.pdf");
+
+	double neut_pnu_array[neut_num];
+	double neut_weight_array[neut_num];
+	double charg_pnu_array[charg_num];
+	double charg_weight_array[charg_num];
+	
+	int count=0;
+	int count2=0;
+
+	for (int i=0; i<num_pass; i++)
+	  {
+	    if(current_array[i]==0)
+	      {
+
+		neut_pnu_array[count]=pnu_log_array[i];
+		neut_weight_array[count]=weight_array[i];
+		count++;
+	      }
+	    if(current_array[i]==1)
+	      {
+		charg_pnu_array[count2]=pnu_log_array[i];
+		charg_weight_array[count2]=weight_array[i];
+		count2++;
+	      }
+	  }
+
+	TCanvas  *c13 = new TCanvas("c13", "Energy vs. Weight with Current", 200, 10, 1500, 500);
+	c13->Divide(2);
+
+	c13->cd(1);
+	TGraph *gr_neut_current;
+	gr_neut_current = new TGraph(neut_num, neut_weight_array, neut_pnu_array);
+	
+	gr_neut_current->SetTitle("Energy vs. Weight, Neutral Current");
+	gr_neut_current->GetHistogram()->SetXTitle("Weight");
+	gr_neut_current->GetHistogram()->SetYTitle("Energy");
+	gr_neut_current->GetYaxis()->SetTitleOffset(1.2);
+	gr_neut_current->Draw("a*");
+
+	c13->cd(2);
+	TGraph *gr_charg_current;
+	gr_charg_current = new TGraph(charg_num, charg_weight_array, charg_pnu_array);
+
+	gr_charg_current->SetTitle("Energy Vs. Weight, Charged Current");
+	gr_charg_current->GetHistogram()->SetXTitle("Weight");
+	gr_charg_current->GetHistogram()->SetYTitle("Energy");
+	gr_charg_current->GetYaxis()->SetTitleOffset(1.2);
+	gr_charg_current->Draw("a*");
+
+	c13->Print("plots/K_Current_Energy_Weight.pdf");
+
+	TCanvas *c14 = new TCanvas("c14", "Flavor vs. Weight",200, 10, 1500, 500); 
+	TH1F *h1 = new TH1F("h1", "Flavor vs. Weight", 3, 0, 3);
+
+	for (int i=0; i<num_pass; i++)
+	  {
+	    h1->Fill(nuflavor_array[i], weight_array[i]);
+	  }
+	h1->Draw();
+	c14->Print("plots/K_Weight_v_Flavor.pdf");
+
+	TCanvas *c15 = new TCanvas("c15", "Had Weight vs. Flavor", 200, 10, 1500, 500);
+	c15->Divide(2);
+
+	c15->cd(1);
+	TH1F *h2 = new TH1F("h2", "Had Weight vs. Flavor", 3, 0, 3);
+
+	c15->cd(2);
+	TH1F *h3 = new TH1F("h3", "Em Weight vs. Flavor", 3, 0, 3);
+
+
+	for (int i=0; i<num_pass; i++)
+	  {
+	    if (hadfrac_array[i]<emfrac_array[i])
+	      {
+		c15->cd(1);
+		h2->Fill(nuflavor_array[i],weight_array[i]);
+	      }
+	    if (hadfrac_array[i]>emfrac_array[i])
+	      {
+		c15->cd(2);
+		h3->Fill(nuflavor_array[i], weight_array[i]);
+	      }
+	  }
+	c15->cd(1);
+	h2->GetXaxis()->SetBinLabel(1,"electron");
+	h2->GetXaxis()->SetBinLabel(2,"muon");
+	h2->GetXaxis()->SetBinLabel(3,"tau");
+	h2->Draw();
+	c15->cd(2);
+	h3->GetXaxis()->SetBinLabel(1,"electron");
+	h3->GetXaxis()->SetBinLabel(2,"muon");
+	h3->GetXaxis()->SetBinLabel(3,"tau");
+	h3->Draw();
+	c15->Print("plots/K_Had_Em_Weight.pdf");
+
+
+	TCanvas *c16 = new TCanvas("c16","Weight vs. Cos(theta) Trajectory", 200, 10, 1500, 500);
+	TH1F *h4 = new TH1F("h4","Weight vs. Cos(theta) Trajectory", 50, -1, 1);
+
+	for(int i=0; i<num_pass; i++)
+	  {
+	    h4->Fill(costheta_array[i],weight_array[i]);
+	  }
+
+	h4->Draw();
+	c16->Print("plots/K_Costheta_Weight.pdf");
+}
+
+//Next step: go through icemc and mark all the other files that are created in the output directory (distance.txt, events.txt, etc) so that they change with the array id. Keep the output file the same and then use "hadd" to add up all the icefinal.root files after running multiple jobs.
+
+

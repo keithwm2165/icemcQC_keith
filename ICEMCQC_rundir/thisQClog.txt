@@ -1,0 +1,22 @@
+IcemcQC run from /home/mcbride.342/icemcQC_keith/ICEMCQC_rundir
+Wed Sep 20 12:39:25 EDT 2017
+
+
+Icemc executable present? : YES
+
+
+Number of setup files: 1
+Setup files used:
+10 inputs_anita3.txt
+
+
+jobno_694480_complete
+jobno_694481_complete
+jobno_694482_complete
+jobno_694483_complete
+jobno_694484_complete
+jobno_694485_complete
+jobno_694486_complete
+jobno_694487_complete
+jobno_694488_complete
+jobno_694489_complete

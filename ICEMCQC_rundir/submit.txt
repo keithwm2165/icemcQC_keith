@@ -1,0 +1,30 @@
+Wed Sep 20 12:39:27 EDT 2017
+Submitted queue listing:
+ACTIVE JOBS--------------------
+JOBNAME            USERNAME      STATE  PROC   REMAINING            STARTTIME
+
+694480             mcbride.342    Running     1    00:58:57  Wed Sep 20 12:39:25
+694481             mcbride.342    Running     1    00:58:57  Wed Sep 20 12:39:25
+694482             mcbride.342    Running     1    00:58:57  Wed Sep 20 12:39:25
+694483             mcbride.342    Running     1    00:58:57  Wed Sep 20 12:39:25
+694484             mcbride.342    Running     1    00:58:57  Wed Sep 20 12:39:25
+694485             mcbride.342    Running     1    00:59:00  Wed Sep 20 12:39:28
+694486             mcbride.342    Running     1    00:59:00  Wed Sep 20 12:39:28
+694487             mcbride.342    Running     1    00:59:00  Wed Sep 20 12:39:28
+694488             mcbride.342    Running     1    00:59:00  Wed Sep 20 12:39:28
+694489             mcbride.342    Running     1    00:59:00  Wed Sep 20 12:39:28
+
+    10 Active Jobs      10 of  136 Processors Active (7.35%)
+                         1 of    5 Nodes Active      (20.00%)
+
+IDLE JOBS----------------------
+JOBNAME            USERNAME      STATE  PROC     WCLIMIT            QUEUETIME
+
+
+0 Idle Jobs
+
+BLOCKED JOBS----------------
+JOBNAME            USERNAME      STATE  PROC     WCLIMIT            QUEUETIME
+
+
+Total Jobs: 10   Active Jobs: 10   Idle Jobs: 0   Blocked Jobs: 0

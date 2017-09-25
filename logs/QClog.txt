@@ -1,0 +1,20 @@
+Wed Sep 20 12:35:23 EDT 2017
+QC run directory: /home/mcbride.342/icemcQC_keith (QCdir)
+
+
+Plots folder not present; run aborted.
+Wed Sep 20 12:35:43 EDT 2017
+QC run directory: /home/mcbride.342/icemcQC_keith (QCdir)
+
+
+readPrimaries.* is not present in plots folder; run aborted.
+Wed Sep 20 12:37:04 EDT 2017
+QC run directory: /home/mcbride.342/icemcQC_keith (QCdir)
+
+
+IcemcQCsorter.sh is not present; run aborted.
+Wed Sep 20 12:37:30 EDT 2017
+QC run directory: /home/mcbride.342/icemcQC_keith (QCdir)
+
+
+IcemcQCsorter.sh is not present.  No status report will be sent and IcemcQC website will not be updated.
