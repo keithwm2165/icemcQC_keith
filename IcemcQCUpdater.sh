@@ -12,9 +12,9 @@ echo "  "
 
 #code for directories
 rundir=$(gawk '/rundir/{print $2}' setups/IcemcQCParameters.txt)
-curr_dir=$(pwd)
-path_dir=$curr_dir/$rundir
-echo 'current directory: ' $curr_dir
+updater_dir=$(pwd)
+path_dir=$updater_dir/$rundir
+echo 'current directory: ' $updater_dir
 
 
 #commands to make icemc once it is installed
@@ -29,8 +29,8 @@ export LD_LIBRARY_PATH=${ICEMC_BUILD_DIR}:${LD_LIBRARY_PATH}
 
 echo 'export ANITA_UTIL_INSTALL_DIR=/home/mcbride.342/anitaBuildTool/Utils' > env_vars_icemcQC.sh
 echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ANITA_UTIL_INSTALL_DIR/lib' >> env_vars_icemcQC.sh
-echo 'export ICEMC_SRC_DIR=$path_dir/icemc' >> env_vars_icemcQC.sh
-echo 'export ICEMC_BUILD_DIR=$path_dir/icemc' >> env_vars_icemcQC.sh
+echo 'export ICEMC_SRC_DIR='$path_dir'/icemc' >> env_vars_icemcQC.sh
+echo 'export ICEMC_BUILD_DIR='$path_dir'/icemc' >> env_vars_icemcQC.sh
 echo 'export LD_LIBRARY_PATH=${ICEMC_BUILD_DIR}:${LD_LIBRARY_PATH}' >> env_vars_icemcQC.sh
 
 
@@ -39,14 +39,14 @@ if [ $findstat -eq 1 ]; then
      echo "found icemc"
      echo " "
      cd $path_dir/icemc
-     git pull &>> $curr_dir/log_icemc_changes.txt
+     git pull &>> $updater_dir/log_icemc_changes.txt
      make clean
      make &>> log_make_out.txt
      git log &> log_commit_history.txt
      echo " "
      echo "made icemc"
      echo " "
-     cd $curr_dir
+     cd $updater_dir
 elif [ $findstat -eq 0 ]; then
      echo " "
      echo "did not find icemc"
@@ -54,10 +54,11 @@ elif [ $findstat -eq 0 ]; then
      cd $path_dir
      git clone https://github.com/anitaNeutrino/icemc.git
      cd $path_dir/icemc
+     mkdir outputs
      make &> log_make_out.txt
      git log &> log_commit_history.txt
      echo "made icemc"
-     cd $curr_dir
+     cd $updater_dir
 else
      echo "error! abort!"
 fi
