@@ -1,0 +1,11 @@
+/home/mcbride.342/icemcQC_keith/ICEMCQC_rundir/icemc
+ 
+Wed Sep 27 11:48:22 EDT 2017
+
+/home/mcbride.342/icemcQC_keith/ICEMCQC_rundir/icemc
+  
+setup file: inputs_anita3.txt
+run number: 5
+output file: outputs
+  
+=>> PBS: job killed: walltime 3541 exceeded limit 3540

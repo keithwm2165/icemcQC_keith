@@ -6,11 +6,15 @@
 #PBS -m abe
 #PBS -M mcbride.342@osu.edu
 
+cd $SRC_DIR
 
-source $curr_dir/env_vars_icemcQC.sh
+source env_vars_icemcQC.sh
+echo $ICEMC_SRC_DIR
+echo ' '
 cd $LOCALDIR/icemc
+
 date
-echo "  "
+echo 
 pwd
 echo "  "
 echo 'setup file: '$INPUTFILE
@@ -18,6 +22,6 @@ echo 'run number: '$RUN_NO
 echo 'output file: '$OUTPUTFILE
 echo "  "
 
-./icemc -i$INPUTFILE -o/tmp/iceout$RUN_NO -r$RUN_NO
+./icemc -i$LOCALDIR/$INPUTFILE -o/tmp/iceout$RUN_NO  &>> log_QC$RUN_NO.txt
 
 pbsdcp /tmp/iceout$RUN_NO/'*' $OUTPUTFILE

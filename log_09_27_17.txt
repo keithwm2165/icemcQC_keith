@@ -1,0 +1,64 @@
+## This is the output of IcemcQC.sh ran on this commit but just the end of the output after ~170 checks by Submit.sh before all jobs completed.
+
+All jobs complete!
+   
+  
+Starting IcemcQCPlotter
+  
+current dir : /home/mcbride.342/icemcQC_keith/ICEMCQC_rundir
+-bash: outputs/outputlog.txt: No such file or directory
+-bash: outputs/templog.txt: No such file or directory
+-bash: outputs/outputlog.txt: No such file or directory
+-bash: cd: outputs: No such file or directory
+rm: cannot remove `icefinal.root': No such file or directory
+gawk: cmd. line:1: fatal: cannot open file `outputlog.txt' for reading (No such file or directory)
+gawk: cmd. line:1: fatal: cannot open file `outputlog.txt' for reading (No such file or directory)
+# of output (*.root) files found: 0
+  
+Checking dates on output files...
+  
+-bash: outputs/outputlog.txt: No such file or directory
+gawk: cmd. line:1: fatal: cannot open file `IcemcQCParameters.txt' for reading (No such file or directory)
+-bash: outputs/outputlog.txt: No such file or directory
+   
+0
+
+newvar 1 is10
+-bash: cd: outputs/current_root: No such file or directory
+mv: cannot stat `icefinal1.root': No such file or directory
+mv: cannot stat `icefinal2.root': No such file or directory
+mv: cannot stat `icefinal3.root': No such file or directory
+mv: cannot stat `icefinal4.root': No such file or directory
+mv: cannot stat `icefinal5.root': No such file or directory
+mv: cannot stat `icefinal6.root': No such file or directory
+mv: cannot stat `icefinal7.root': No such file or directory
+mv: cannot stat `icefinal8.root': No such file or directory
+mv: cannot stat `icefinal9.root': No such file or directory
+mv: cannot stat `icefinal10.root': No such file or directory
+hadd Target file: icefinal_1.root
+hadd Source file 1: icefinal*
+Error in <TFile::TFile>: file icefinal* does not exist
+Error in <TFileMerger::AddFile>: cannot open file icefinal*
+hadd exiting due to error in icefinal*
+0
+0
+  
+Total numbers of runs is correct
+  
+gawk: cmd. line:1: fatal: cannot open file `IcemcQCParameters.txt' for reading (No such file or directory)
+-bash: outputs/outputlog.txt: No such file or directory
+-bash: outputs/outputlog.txt: No such file or directory
+  
+Submitting plots...
+  
+Plot number is 0
+/home
+awk: cmd. line:1: fatal: cannot open file `thisrun.txt' for reading (No such file or directory)
+version is
+make: M.readPrim: No such file or directory
+make: *** No rule to make target `M.readPrim'.  Stop.
+mkdir: cannot create directory `primaryplots': Permission denied
+what is this value? inputs_anita3.txt
+-bash: cd: Practice: No such file or directory
+-bash-4.1$ 
+
