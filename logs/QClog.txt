@@ -23,3 +23,38 @@ QC run directory: /home/mcbride.342/icemcQC_keith (QCdir)
 
 
 IcemcQCsorter.sh is not present.  No status report will be sent and IcemcQC website will not be updated.
+Wed Sep 27 13:57:01 EDT 2017
+QC run directory: /home/mcbride.342/icemcQC_keith (QCdir)
+
+
+IcemcQCsorter.sh is not present.  No status report will be sent and IcemcQC website will not be updated.
+Thu Sep 28 14:10:11 EDT 2017
+QC run directory: /home/mcbride.342/icemcQC_keith (QCdir)
+
+
+IcemcQCsorter.sh is not present.  No status report will be sent and IcemcQC website will not be updated.
+Thu Sep 28 14:32:58 EDT 2017
+QC run directory: /home/mcbride.342/icemcQC_keith (QCdir)
+
+
+IcemcQCsorter.sh is not present.  No status report will be sent and IcemcQC website will not be updated.
+Thu Sep 28 15:06:20 EDT 2017
+QC run directory: /home/mcbride.342/icemcQC_keith (QCdir)
+
+
+IcemcQCsorter.sh is not present.  No status report will be sent and IcemcQC website will not be updated.
+Thu Sep 28 16:14:51 EDT 2017
+QC run directory: /home/mcbride.342/icemcQC_keith (QCdir)
+
+
+IcemcQCsorter.sh is not present.  No status report will be sent and IcemcQC website will not be updated.
+Fri Sep 29 08:33:38 EDT 2017
+QC run directory: /home/mcbride.342/icemcQC_keith (QCdir)
+
+
+IcemcQCsorter.sh is not present.  No status report will be sent and IcemcQC website will not be updated.
+Fri Sep 29 09:21:41 EDT 2017
+QC run directory: /home/mcbride.342/icemcQC_keith (QCdir)
+
+
+IcemcQCsorter.sh is not present.  No status report will be sent and IcemcQC website will not be updated.

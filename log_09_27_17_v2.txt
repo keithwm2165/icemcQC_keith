@@ -1,0 +1,99 @@
+##output of . IcemcQC.sh with smaller number of neutrinos and afetr changing path of outputs folder in Plotter.sh 
+## New error in where Parameters.txt is loated?
+
+Wed Sep 27 14:08:28 EDT 2017
+Check no. 28
+job no. 694604 has been added to thisQClog.txt
+job no. 694605 has been added to thisQClog.txt
+job no. 694607 has been added to thisQClog.txt
+Runs completed: 10
+   
+   
+All jobs complete!
+   
+  
+Starting IcemcQCPlotter
+  
+current dir : /home/mcbride.342/icemcQC_keith/ICEMCQC_rundir
+# of output (*.root) files found: 10
+  
+Checking dates on output files...
+  
+record #1 matches today
+record #2 matches today
+record #3 matches today
+record #4 matches today
+record #5 matches today
+record #6 matches today
+record #7 matches today
+record #8 matches today
+record #9 matches today
+record #10 matches today
+gawk: cmd. line:1: fatal: cannot open file `IcemcQCParameters.txt' for reading (No such file or directory)
+gawk: cmd. line:1: fatal: cannot open file `IcemcQCParameters.txt' for reading (No such file or directory)
+   
+0
+
+newvar 1 is10
+hadd Target file: icefinal_1.root
+hadd Source file 1: icefinal10.root
+Warning in <TFile::Init>: file icefinal10.root probably not closed, trying to recover
+Info in <TFile::Recover>: icefinal10.root, recovered key TTree:balloon at address 376969173
+Info in <TFile::Recover>: icefinal10.root, recovered key TTree:passing_events at address 538591711
+Warning in <TFile::Init>: successfully recovered 2 keys
+Warning in <TClass::TClass>: no dictionary for class Taumodel is available
+hadd Source file 2: icefinal1.root
+Warning in <TFile::Init>: file icefinal1.root probably not closed, trying to recover
+Info in <TFile::Recover>: icefinal1.root, recovered key TTree:balloon at address 346463077
+Info in <TFile::Recover>: icefinal1.root, recovered key TTree:passing_events at address 499793632
+Warning in <TFile::Init>: successfully recovered 2 keys
+hadd Source file 3: icefinal2.root
+Warning in <TFile::Init>: file icefinal2.root probably not closed, trying to recover
+Info in <TFile::Recover>: icefinal2.root, recovered key TTree:balloon at address 370882377
+Info in <TFile::Recover>: icefinal2.root, recovered key TTree:passing_events at address 539523479
+Warning in <TFile::Init>: successfully recovered 2 keys
+hadd Source file 4: icefinal3.root
+Warning in <TFile::Init>: file icefinal3.root probably not closed, trying to recover
+Info in <TFile::Recover>: icefinal3.root, recovered key TTree:balloon at address 346436266
+Info in <TFile::Recover>: icefinal3.root, recovered key TTree:passing_events at address 502572405
+Warning in <TFile::Init>: successfully recovered 2 keys
+hadd Source file 5: icefinal4.root
+Warning in <TFile::Init>: file icefinal4.root probably not closed, trying to recover
+Info in <TFile::Recover>: icefinal4.root, recovered key TTree:balloon at address 349388737
+Info in <TFile::Recover>: icefinal4.root, recovered key TTree:passing_events at address 542319684
+Warning in <TFile::Init>: successfully recovered 2 keys
+hadd Source file 6: icefinal5.root
+Warning in <TFile::Init>: file icefinal5.root probably not closed, trying to recover
+Info in <TFile::Recover>: icefinal5.root, recovered key TTree:balloon at address 382354237
+Info in <TFile::Recover>: icefinal5.root, recovered key TTree:passing_events at address 538168902
+Warning in <TFile::Init>: successfully recovered 2 keys
+hadd Source file 7: icefinal6.root
+Warning in <TFile::Init>: file icefinal6.root probably not closed, trying to recover
+Info in <TFile::Recover>: icefinal6.root, recovered key TTree:balloon at address 382217987
+Info in <TFile::Recover>: icefinal6.root, recovered key TTree:passing_events at address 537761110
+Warning in <TFile::Init>: successfully recovered 2 keys
+hadd Source file 8: icefinal7.root
+Warning in <TFile::Init>: file icefinal7.root probably not closed, trying to recover
+Info in <TFile::Recover>: icefinal7.root, recovered key TTree:balloon at address 377806339
+Info in <TFile::Recover>: icefinal7.root, recovered key TTree:passing_events at address 536042284
+Warning in <TFile::Init>: successfully recovered 2 keys
+hadd Source file 9: icefinal8.root
+Warning in <TFile::Init>: file icefinal8.root probably not closed, trying to recover
+Info in <TFile::Recover>: icefinal8.root, recovered key TTree:balloon at address 351929132
+Info in <TFile::Recover>: icefinal8.root, recovered key TTree:passing_events at address 545793123
+Warning in <TFile::Init>: successfully recovered 2 keys
+hadd Source file 10: icefinal9.root
+Warning in <TFile::Init>: file icefinal9.root probably not closed, trying to recover
+Info in <TFile::Recover>: icefinal9.root, recovered key TTree:balloon at address 382294320
+Info in <TFile::Recover>: icefinal9.root, recovered key TTree:passing_events at address 543088879
+Warning in <TFile::Init>: successfully recovered 2 keys
+hadd Target path: icefinal_1.root:/
+10
+0
+ERROR: Total numbers of runs is NOT correct
+   
+exiting...
+   
+   
+-bash-4.1$ 
+

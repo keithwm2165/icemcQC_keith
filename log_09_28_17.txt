@@ -1,0 +1,58 @@
+#Plotter was edited (run diff on the /ICEMCQC/icemcQC_keith/Plotter.sh and the /home/icemcQC_keith/Plotter.sh to see)
+# Output of . IcemcQC.sh ends at Plotter because of failing to find the Parameters file. Need to determine what to do with the paths here or whether to copy parameters file into that directory.
+
+   
+All jobs complete!
+   
+  
+Starting IcemcQCPlotter
+  
+current dir : /home/mcbride.342/icemcQC_keith/ICEMCQC_rundir
+# of output (*.root) files found: 10
+  
+Checking dates on output files...
+  
+record #1 matches today
+record #2 matches today
+record #3 matches today
+record #4 matches today
+record #5 matches today
+record #6 matches today
+record #7 matches today
+record #8 matches today
+record #9 matches today
+record #10 matches today
+/home/mcbride.342/icemcQC_keith/ICEMCQC_rundir/icemc/outputs
+/home/mcbride.342/icemcQC_keith
+gawk: cmd. line:1: fatal: cannot open file `IcemcQCParameters.txt' for reading (No such file or directory)
+/home/mcbride.342/icemcQC_keith
+-bash: outputs/outputlog.txt: No such file or directory
+   
+0
+
+newvar 1 is10
+-bash: cd: outputs/current_root: No such file or directory
+mkdir: cannot create directory `Setup1': File exists
+mv: cannot stat `icefinal1.root': No such file or directory
+mv: cannot stat `icefinal2.root': No such file or directory
+mv: cannot stat `icefinal3.root': No such file or directory
+mv: cannot stat `icefinal4.root': No such file or directory
+mv: cannot stat `icefinal5.root': No such file or directory
+mv: cannot stat `icefinal6.root': No such file or directory
+mv: cannot stat `icefinal7.root': No such file or directory
+mv: cannot stat `icefinal8.root': No such file or directory
+mv: cannot stat `icefinal9.root': No such file or directory
+mv: cannot stat `icefinal10.root': No such file or directory
+hadd Target file: icefinal_1.root
+Error in <TFile::TFile>: file icefinal_1.root already exists
+Error in <TFileMerger::OutputFile>: cannot open the MERGER output file icefinal_1.root
+hadd error opening target file (does icefinal_1.root exist?).
+Pass "-f" argument to force re-creation of output file.
+10
+0
+ERROR: Total numbers of runs is NOT correct
+   
+exiting...
+   
+   
+
