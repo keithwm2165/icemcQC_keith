@@ -83,8 +83,9 @@ cd ..
 echo "Setup files used:" >> $curr_dir/icemc/outputs/$outlog
 echo `pwd`
 SetupNo=$(gawk '/.txt/' setups/IcemcQCParameters.txt | wc -l)
+QC_path=`pwd`
 echo `pwd`
-gawk '/.txt/{print $1, $2}' setups/IcemcQCParameters.txt >> $curr_dir/icemc/outputs/$outlog
+gawk '/.txt/{print $1, $2}' $QC_path/setups/IcemcQCParameters.txt >> $curr_dir/icemc/outputs/$outlog
 echo "   "
 echo $SetupNo
 echo `pwd`
@@ -167,14 +168,14 @@ fi
 #cd ..
 ##grab plotting scripts to be run
 echo `pwd`
-PlotNo=$(gawk '/script/' IcemcQCParameters.txt | wc -l)
+PlotNo=$(gawk '/script/' $QC_path/setups/IcemcQCParameters.txt | wc -l)
 echo "Plot files used:" >> $curr_dir/icemc/outputs/$outlog
-gawk '/script/{print $2}' IcemcQCParameters.txt >> $curr_dir/icemc/outputs/$outlog
+gawk '/script/{print $2}' $QC_path/setups/IcemcQCParameters.txt >> $curr_dir/icemc/outputs/$outlog
 
 for ((j = 1;j <= $PlotNo; j++ ))
 	do 
 	let line=$j+4+$SetupNo+$outNo
-	plot2[$j]=$(gawk -F'[ ]' 'NR=='$line'{print $1}' outputs/$outlog)
+	plot2[$j]=$(gawk -F'[ ]' 'NR=='$line'{print $1}' $curr_dir/icemc/outputs/$outlog)
 	echo 'plot2['$j'] = '${plot2[$j]}
 	something='hello'
 done
@@ -188,13 +189,14 @@ pwd
 version=$(awk /revision/'{print $4}' thisrun.txt)
 echo 'version is' $version
 
-
+cd $curr_dir
+cd ../plots
 make -f M.readPrim
 mkdir primaryplots
 for ((i = 1;i <= $SetupNo; i++ ))
         do
-	./readPrimaries outputs/current_root/Setup$i/icefinal_$i.root
-	cd outputs/current_root
+	./readPrimaries $curr_dir/icemc/outputs/current_root/Setup$i/icefinal_$i.root
+	cd $curr_dir/icemc/outputs/current_root
 	mkdir rev${version}${setup[$i]}
 	mv Setup$i rev${version}${setup[$i]}
 	cd ..
