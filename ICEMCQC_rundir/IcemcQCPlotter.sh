@@ -15,8 +15,11 @@ echo 'Starting IcemcQCPlotter'
 echo "  "
 
 ##setup log files from which to read output files
-icemcdir=`pwd`
-echo 'current dir : '$icemcdir
+#Keith edits
+curr_dir=`pwd`
+cd $curr_dir/icemc
+echo 'current dir : '$curr_dir
+#Keith edits
 date > outputs/outputlog.txt
 date > outputs/templog.txt
 date  --date=" day ago" >> outputs/outputlog.txt
@@ -73,29 +76,34 @@ mv templog.txt outputlog.txt
 outNo=$(gawk '/.root/' $outlog | wc -l)
 #At this point we could have icefinal.root files that were created from different input scripts.  To deal with this, I create Setup files for each set of input files and add the appropriate icefinal* files to each one.
 ##grab setup file names and number of runs per setup file
-
+testdir=`pwd`
+echo $testdir
+cd $curr_dir
 cd ..
-echo "Setup files used:" >> outputs/$outlog
-
-SetupNo=$(gawk '/.txt/' IcemcQCParameters.txt | wc -l)
-gawk '/.txt/{print $1, $2}' IcemcQCParameters.txt >> outputs/$outlog
+echo "Setup files used:" >> $curr_dir/icemc/outputs/$outlog
+echo `pwd`
+SetupNo=$(gawk '/.txt/' setups/IcemcQCParameters.txt | wc -l)
+QC_path=`pwd`
+echo `pwd`
+gawk '/.txt/{print $1, $2}' $QC_path/setups/IcemcQCParameters.txt >> $curr_dir/icemc/outputs/$outlog
 echo "   "
 echo $SetupNo
+echo `pwd`
 totruns=0
 var=0
 for ((j = 1;j <= $SetupNo; j++ ))
 	do 
 	let line=$j+3+$outNo
-	setup[$j]=$(gawk -F'[ .]' 'NR=='$line'{print $2}' outputs/$outlog)
+	setup[$j]=$(gawk -F'[ .]' 'NR=='$line'{print $2}' $curr_dir/icemc/outputs/$outlog)
 	echo 'setup['$j'] = '${setup[$j]}
-	numruns[$j]=$(gawk 'NR=='$line'{print $1}' outputs/$outlog)
+	numruns[$j]=$(gawk 'NR=='$line'{print $1}' $curr_dir/icemc/outputs/$outlog)
 	echo 'numruns['$j'] = '${numruns[$j]}
 	let totruns=$totruns+${numruns[$j]}
 done
 echo ${setup[2]}
 newvar[1]=${numruns[1]}
 echo 'newvar 1 is'${newvar[1]}
-cd outputs/current_root
+cd $curr_dir/icemc/outputs/current_root
 mkdir Setup1
 #newvar[] is an array that holds the total amount of runs for each input file. For example, if numruns[]=[2 4 3] then newvar[]=[2 2+4 2+4+3]=[2 6 9].
 #This for loop fills newvar and makes a directory depending on the input file
@@ -115,6 +123,7 @@ done
 
 #now go into each setup file and add icefinal* files together for plotting purposes.
 cd Setup1
+echo `pwd` " below setup1 " 
 hadd icefinal_1.root icefinal*
 cd ..
 
@@ -133,7 +142,7 @@ for((j = 2;j <= $SetupNo; j++ ))
 	cd ..
 done
 
-
+echo `pwd` " before total numbers of runs check"
 echo $outNo
 echo $totruns
 cd ..
@@ -158,14 +167,15 @@ fi
 #cd ..
 #cd ..
 ##grab plotting scripts to be run
-PlotNo=$(gawk '/script/' IcemcQCParameters.txt | wc -l)
-echo "Plot files used:" >> outputs/$outlog
-gawk '/script/{print $2}' IcemcQCParameters.txt >> outputs/$outlog
+echo `pwd`
+PlotNo=$(gawk '/script/' $QC_path/setups/IcemcQCParameters.txt | wc -l)
+echo "Plot files used:" >> $curr_dir/icemc/outputs/$outlog
+gawk '/script/{print $2}' $QC_path/setups/IcemcQCParameters.txt >> $curr_dir/icemc/outputs/$outlog
 
 for ((j = 1;j <= $PlotNo; j++ ))
 	do 
 	let line=$j+4+$SetupNo+$outNo
-	plot2[$j]=$(gawk -F'[ ]' 'NR=='$line'{print $1}' outputs/$outlog)
+	plot2[$j]=$(gawk -F'[ ]' 'NR=='$line'{print $1}' $curr_dir/icemc/outputs/$outlog)
 	echo 'plot2['$j'] = '${plot2[$j]}
 	something='hello'
 done
@@ -179,13 +189,14 @@ pwd
 version=$(awk /revision/'{print $4}' thisrun.txt)
 echo 'version is' $version
 
-
+cd $curr_dir
+cd ../plots
 make -f M.readPrim
 mkdir primaryplots
 for ((i = 1;i <= $SetupNo; i++ ))
         do
-	./readPrimaries outputs/current_root/Setup$i/icefinal_$i.root
-	cd outputs/current_root
+	./readPrimaries $curr_dir/icemc/outputs/current_root/Setup$i/icefinal_$i.root
+	cd $curr_dir/icemc/outputs/current_root
 	mkdir rev${version}${setup[$i]}
 	mv Setup$i rev${version}${setup[$i]}
 	cd ..

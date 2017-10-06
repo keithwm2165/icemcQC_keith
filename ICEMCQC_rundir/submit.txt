@@ -1,18 +1,18 @@
-Wed Sep 27 11:48:22 EDT 2017
+Wed Oct  4 09:15:36 EDT 2017
 Submitted queue listing:
 ACTIVE JOBS--------------------
 JOBNAME            USERNAME      STATE  PROC   REMAINING            STARTTIME
 
-694589             mcbride.342    Running     1    00:58:58  Wed Sep 27 11:48:21
-694590             mcbride.342    Running     1    00:58:58  Wed Sep 27 11:48:21
-694591             mcbride.342    Running     1    00:58:58  Wed Sep 27 11:48:21
-694592             mcbride.342    Running     1    00:58:58  Wed Sep 27 11:48:21
-694593             mcbride.342    Running     1    00:58:58  Wed Sep 27 11:48:21
-694594             mcbride.342    Running     1    00:58:58  Wed Sep 27 11:48:21
-694595             mcbride.342    Running     1    00:58:58  Wed Sep 27 11:48:21
-694596             mcbride.342    Running     1    00:58:58  Wed Sep 27 11:48:21
-694597             mcbride.342    Running     1    00:58:58  Wed Sep 27 11:48:21
-694598             mcbride.342    Running     1    00:58:58  Wed Sep 27 11:48:21
+696239             mcbride.342    Running     1    00:59:00  Wed Oct  4 09:15:34
+696240             mcbride.342    Running     1    00:59:00  Wed Oct  4 09:15:34
+696241             mcbride.342    Running     1    00:59:00  Wed Oct  4 09:15:34
+696242             mcbride.342    Running     1    00:59:00  Wed Oct  4 09:15:34
+696243             mcbride.342    Running     1    00:59:00  Wed Oct  4 09:15:34
+696244             mcbride.342    Running     1    00:59:00  Wed Oct  4 09:15:34
+696245             mcbride.342    Running     1    00:59:00  Wed Oct  4 09:15:34
+696246             mcbride.342    Running     1    00:59:00  Wed Oct  4 09:15:34
+696247             mcbride.342    Running     1    00:59:00  Wed Oct  4 09:15:34
+696248             mcbride.342    Running     1    00:59:00  Wed Oct  4 09:15:34
 
     10 Active Jobs      10 of  136 Processors Active (7.35%)
                          1 of    5 Nodes Active      (20.00%)

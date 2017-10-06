@@ -1,4 +1,4 @@
-Wed Sep 27 11:45:35 EDT 2017
+Wed Oct  4 09:13:38 EDT 2017
 QC run directory: /home/mcbride.342/icemcQC_keith (QCdir)
 
 
