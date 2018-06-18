@@ -101,7 +101,7 @@ showq >> queue.txt
 totrun=1
 for (( i = 1; i <= $SetupNo; i++ ))
     do
-Keith Edits
+#Keith Edits
 	for (( j = 1; j <= ${numruns[$i]}; j++ ))
 		do
 		echo 'totrun value:'$totrun
