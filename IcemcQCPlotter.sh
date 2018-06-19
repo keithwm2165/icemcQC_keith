@@ -191,7 +191,7 @@ echo 'version is' $version
 
 cd $curr_dir
 cd ../plots
-make -f M.readPrim
+make -f M.readPrimaries
 mkdir primaryplots
 for ((i = 1;i <= $SetupNo; i++ ))
         do
