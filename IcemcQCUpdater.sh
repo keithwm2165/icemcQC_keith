@@ -41,7 +41,7 @@ if [ $findstat -eq 1 ]; then
      cd $path_dir/icemc
      git pull &>> $updater_dir/log_icemc_changes.txt
      make clean
-     make &>> log_make_out.txt
+     make &>> log_makeicemc_output.txt
      git log &> log_commit_history.txt
      echo " "
      echo "made icemc"
@@ -55,7 +55,7 @@ elif [ $findstat -eq 0 ]; then
      git clone https://github.com/anitaNeutrino/icemc.git
      cd $path_dir/icemc
      mkdir outputs
-     make &> log_make_out.txt
+     make &> log_makeicemc_output.txt
      git log &> log_commit_history.txt
      echo "made icemc"
      cd $updater_dir
