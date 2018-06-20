@@ -19,16 +19,28 @@ echo 'current directory: ' $updater_dir
 
 #commands to make icemc once it is installed
 
-#source environment variables and make file for doing so as well
-export ANITA_UTIL_INSTALL_DIR=/home/mcbride.342/anitaBuildTool/Utils
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ANITA_UTIL_INSTALL_DIR/lib
+#source environment variables and make file for doing so as well includes modules loaded for using on cluster without breaking. 
+export ROOTSYS=/users/PAS0174/osu8620/root-6.08.06
+export LD_INCLUDE_PATH=/users/PAS0174/osu8620/cint/libcint/build/include:$LD_INCLUDE_PATH
+module load fftw3/3.3.5
+module load gnu/6.3.0
+module load python/3.4.2
+module load cmake/3.7.2
+export CC=/usr/local/gcc/6.3.0/bin/gcc
+eval source /users/PAS0174/osu8620/root-6.08.06/builddir/bin/thisroot.sh
 export ICEMC_SRC_DIR=$path_dir/icemc
 export ICEMC_BUILD_DIR=$path_dir/icemc
 export LD_LIBRARY_PATH=${ICEMC_BUILD_DIR}:${LD_LIBRARY_PATH}
 
 
-echo 'export ANITA_UTIL_INSTALL_DIR=/home/mcbride.342/anitaBuildTool/Utils' > env_vars_icemcQC.sh
-echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ANITA_UTIL_INSTALL_DIR/lib' >> env_vars_icemcQC.sh
+echo 'export ROOTSYS=/users/PAS0174/osu8620/root-6.08.06' > env_vars_icemcQC.sh
+echo 'export LD_INCLUDE_PATH=/users/PAS0174/osu8620/cint/libcint/build/include:$LD_INCLUDE_PATH' >> env_vars_icemcQC.sh
+echo 'module load fftw3/3.3.5' >> env_vars_icemcQC.sh
+echo 'module load gnu/6.3.0' >> env_vars_icemcQC.sh
+echo 'module load python/3.4.2' >> env_vars_icemcQC.sh
+echo 'module load cmake/3.7.2' >> env_vars_icemcQC.sh
+echo 'export CC=/usr/local/gcc/6.3.0/bin/gcc' >> env_vars_icemcQC.sh
+echo 'eval source /users/PAS0174/osu8620/root-6.08.06/builddir/bin/thisroot.sh' >>env_vars_icemcQC.sh
 echo 'export ICEMC_SRC_DIR='$path_dir'/icemc' >> env_vars_icemcQC.sh
 echo 'export ICEMC_BUILD_DIR='$path_dir'/icemc' >> env_vars_icemcQC.sh
 echo 'export LD_LIBRARY_PATH=${ICEMC_BUILD_DIR}:${LD_LIBRARY_PATH}' >> env_vars_icemcQC.sh
