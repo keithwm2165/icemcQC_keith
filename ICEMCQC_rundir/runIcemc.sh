@@ -4,7 +4,6 @@
 #PBS -N IcemcQC
 #PBS -j oe 
 #PBS -m abe
-#PBS -M mcbride.342@osu.edu
 
 cd $SRC_DIR
 
