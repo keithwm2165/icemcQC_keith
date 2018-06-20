@@ -83,3 +83,8 @@ QC run directory: /home/mcbride.342/icemcQC_keith (QCdir)
 
 
 IcemcQCsorter.sh is not present.  No status report will be sent and IcemcQC website will not be updated.
+Wed Jun 20 14:39:30 EDT 2018
+QC run directory: /home/keith/icemcQC_summer2018/icemcQC_keith (QCdir)
+
+
+IcemcQCsorter.sh is not present.  No status report will be sent and IcemcQC website will not be updated.

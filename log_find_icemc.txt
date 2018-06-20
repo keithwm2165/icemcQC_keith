@@ -1,1 +1,1 @@
--bash: /home/mcbride.342/icemcQC_keith/ICEMCQC_rundir/icemc: is a directory
+bash: /home/keith/icemcQC_summer2018/icemcQC_keith//icemc: No such file or directory
