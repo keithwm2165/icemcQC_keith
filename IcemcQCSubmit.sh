@@ -114,7 +114,7 @@ done
 echo "   "
 echo 'SHOW QUEUE:'
 echo "   "
-showq
+qstat -u $USER
 echo "   "
 echo "   "
 echo "   "
