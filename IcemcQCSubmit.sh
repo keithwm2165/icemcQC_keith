@@ -119,6 +119,8 @@ echo "   "
 echo "   "
 echo "   "
 
+return
+
 date > submit.txt
 echo 'Submitted queue listing:' >> submit.txt
 showq >> submit.txt
