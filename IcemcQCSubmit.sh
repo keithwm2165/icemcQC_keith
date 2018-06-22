@@ -106,7 +106,7 @@ for (( i = 1; i <= $SetupNo; i++ ))
 		do
 		echo 'totrun value:'$totrun
 		qsub runIcemc.sh -v SRC_DIR=$updater_dir,INPUTFILE=${setup[$i]},RUN_NO=$totrun,OUTPUTFILE=$tgtdir,LOCALDIR=$localdir
-		qsub runIcemc.sh -v INPUTFILE=inputsworking.txt,RUN_NO=$totrun,OUTPUTFILE=outputs,LOCALDIR=$localdir
+		#qsub runIcemc.sh -v INPUTFILE=inputsworking.txt,RUN_NO=$totrun,OUTPUTFILE=outputs,LOCALDIR=$localdir
 	let totrun=$totrun+1
 	done
 done
