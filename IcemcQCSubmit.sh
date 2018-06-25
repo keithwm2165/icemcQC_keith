@@ -95,7 +95,7 @@ echo "   "
 
 date > queue.txt
 echo 'Initial queue listing:' >> queue.txt
-showq >> queue.txt
+qstat -u $USER >> queue.txt
 
 #Submit all the jobs
 totrun=1
@@ -123,7 +123,7 @@ echo "   "
 
 date > submit.txt
 echo 'Submitted queue listing:' >> submit.txt
-showq >> submit.txt
+qstat -u $USER >> submit.txt
 
 echo -e "\n" >> $thislog
 
@@ -202,7 +202,7 @@ while (($complete < $totruns))
 			if [ $done1 -eq 1 ]; then
 				#echo 'job no. '$jobno' is not added to '$thislog
 				#echo 'checking showq for job no. '$jobno
-				showq > templog.txt
+					qstat -u $USER > templog.txt
 				grep -q "$jobno" templog.txt
 				done2=$?
 				if [ $done2 -eq 1 ]; then
