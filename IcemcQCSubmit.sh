@@ -173,6 +173,7 @@ check='not yet'
 for (( i = 1; i <= $currNo; i++ ))  #might need to change the 5 here. This a comprehensive check of whether the queue.txt jobs and the submit jobs match up (the rest of the code is accessing the right jobs).
 	do
 	jobno=$(gawk 'NR=='$i+5'{print $1}' submit.txt)
+	echo $jobno
 	let jobno
 	if [ $jobno -ge $atleast ]; then
 		check='OK'
@@ -207,7 +208,6 @@ while (($complete < $totruns))
 		do
 #this line needs to change
 		jobno=$(gawk 'NR=='$i+5'{print $1}' submit.txt) #the 5 is here because they knew that submit.txt (being from qstat on the other cluster) would give the first job submitted identification.
-
 		if [ $jobno -gt $high ]; then
 			phrase='jobno_'$jobno'_complete'
                         echo $phrase
