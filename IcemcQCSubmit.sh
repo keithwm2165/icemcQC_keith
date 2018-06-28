@@ -172,8 +172,7 @@ echo 'atleast: '$atleast
 check='not yet'
 for (( i = 1; i <= $currNo; i++ ))  #might need to change the 5 here. This a comprehensive check of whether the queue.txt jobs and the submit jobs match up (the rest of the code is accessing the right jobs).
 	do
-	jobno=$(gawk 'NR=='$i+5'{print $1}' submit.txt)
-	echo $jobno
+	jobno=$(gawk 'BEGIN{ FS="." }NR=='$i+7'{print $1}' submit.txt)
 	let jobno
 	echo $jobno
 	if [ $jobno -ge $atleast ]; then
