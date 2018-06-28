@@ -175,6 +175,7 @@ for (( i = 1; i <= $currNo; i++ ))  #might need to change the 5 here. This a com
 	jobno=$(gawk 'NR=='$i+5'{print $1}' submit.txt)
 	echo $jobno
 	let jobno
+	echo $jobno
 	if [ $jobno -ge $atleast ]; then
 		check='OK'
 	fi
