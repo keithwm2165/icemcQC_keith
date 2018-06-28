@@ -159,7 +159,7 @@ if [ $prevstat -eq 0 ]; then # (if it has found $USER in the queue.txt file) (if
 		fi
 	done
 elif [ $prevstat -eq 1 ]; then # (if it has not found $USER in the queue.txt file). (this should be whats happening to Victoria) However, the stuff here could be a problem since there might not be 6 records if we have changed the number of runs to 2!. So we need to determine how to get jobno to be the actual first job.
-	jobno=$(gawk 'NR==6{print $1}' submit.txt)
+	jobno=$(gawk 'NR==8{print $1}' submit.txt)
 	echo 'first job no.: '$jobno
 	let atleast=$jobno+$currNo-1
 else #really shouldnt happen! (any other return value that not 1 or 0 is bad and means something else went wrong). 
