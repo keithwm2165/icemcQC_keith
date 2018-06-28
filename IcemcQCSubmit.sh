@@ -207,7 +207,7 @@ while (($complete < $totruns))
 	for (( i = 1; i <= $currNo; i++ )) 
 		do
 #this line needs to change
-		jobno=$(gawk 'NR=='$i+5'{print $1}' submit.txt) #the 5 is here because they knew that submit.txt (being from qstat on the other cluster) would give the first job submitted identification.
+		jobno=$(gawk 'BEGIN{ FS="." }NR=='$i+7'{print $1}' submit.txt) #the 5 is here because they knew that submit.txt (being from qstat on the other cluster) would give the first job submitted identification.
 		if [ $jobno -gt $high ]; then
 			phrase='jobno_'$jobno'_complete'
                         echo $phrase
