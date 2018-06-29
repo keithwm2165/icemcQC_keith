@@ -152,14 +152,14 @@ high=-1
 if [ $prevstat -eq 0 ]; then # (if it has found $USER in the queue.txt file) (if Victoria is only running QC and no other codes that will submit jobs, then we dont need to worry about this). 
     for (( i = 1; i <= $prevNo; i++ )) 
 		do
-		jobno=$(gawk 'NR=='$i+5'{print $1}' queue.txt) #gawk ('NR==6' '{print $1}') file.txt will  do the following. 1) print $1 returns the 1st column of file.txt 2) NR==6 returns only the record that corresponds to the 6th thing returned by print $1
+		jobno=$(gawk 'BEGIN{ FS="." }NR=='$i+7'{print $1}' queue.txt) #gawk ('NR==6' '{print $1}') file.txt will  do the following. 1) print $1 returns the 1st column of file.txt 2) NR==6 returns only the record that corresponds to the 6th thing returned by print $1
 		if [ $jobno -ge $high ]; then
 			high=$jobno
 			let atleast=$high+$totruns
 		fi
 	done
 elif [ $prevstat -eq 1 ]; then # (if it has not found $USER in the queue.txt file). (this should be whats happening to Victoria) However, the stuff here could be a problem since there might not be 6 records if we have changed the number of runs to 2!. So we need to determine how to get jobno to be the actual first job.
-	jobno=$(gawk 'BEGIN{ FS="." }NR==8{print $1}' submit.txt)
+	jobno=$(gawk 'BEGIN{ FS="." }NR==8{print $1}' submit.txt) #The line number change may come from the change of icemc, not from switching to gitHub.
 	echo 'first job no.: '$jobno
 	let atleast=$jobno+$currNo-1
 else #really shouldnt happen! (any other return value that not 1 or 0 is bad and means something else went wrong). 
