@@ -20,15 +20,15 @@ curr_dir=`pwd`
 cd $curr_dir/icemc
 echo 'current dir : '$curr_dir
 #Keith edits
-date > outputs/outputlog.txt
-date > outputs/templog.txt
+date >> outputs/outputlog.txt
+#date > outputs/templog.txt   templog.txt does not exist;
 date  --date=" day ago" >> outputs/outputlog.txt
 
 outlog=outputlog.txt
-SetupNo=$(gawk '/.txt/' IcemcQCParameters.txt | wc -l)
+#SetupNo=$(gawk '/.txt/' IcemcQCParameters.txt | wc -l)
 
 echo "Setup files used:" >> outputs/$outlog
-gawk '/.txt/{print $1, $2}' IcemcQCParameters.txt >> outputs/$outlog
+#gawk '/.txt/{print $1, $2}' IcemcQCParameters.txt >> outputs/$outlog
 
 #Remove organization files/directories from previous run of Plotter (Do not remove icefinal.root since it will rewritten next time running QC)
 cd outputs
@@ -37,7 +37,9 @@ rm -rf current_root
 mkdir current_root
 
 today=$(gawk 'NR==1{print $3}' $outlog)
+echo $today
 yesterday=$(gawk 'NR==2{print $3}' $outlog)
+echo $yesterday
 
 ##grab the icefinal*.root output files
 ls -l | gawk '/icefinal/{print $7, $9}' >> $outlog
