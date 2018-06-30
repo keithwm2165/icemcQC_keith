@@ -16,9 +16,9 @@ echo "  "
 
 ##setup log files from which to read output files
 #Keith edits
-#curr_dir=`pwd`
-#cd $curr_dir/icemc
-#echo 'current dir : '$curr_dir
+curr_dir=`pwd`
+cd $curr_dir/icemc
+echo 'current dir : '$curr_dir
 #Keith edits
 #date > outputs/outputlog.txt
 #date > outputs/templog.txt 
