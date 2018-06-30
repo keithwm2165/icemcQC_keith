@@ -16,18 +16,19 @@ echo "  "
 
 ##setup log files from which to read output files
 #Keith edits
-curr_dir=`pwd`
-cd $curr_dir/icemc
-echo 'current dir : '$curr_dir
+#curr_dir=`pwd`
+#cd $curr_dir/icemc
+#echo 'current dir : '$curr_dir
 #Keith edits
-date >> outputs/outputlog.txt
-#date > outputs/templog.txt   templog.txt does not exist;
-date  --date=" day ago" >> outputs/outputlog.txt
+#date > outputs/outputlog.txt
+#date > outputs/templog.txt 
+#date  --date="yesterday" >> outputs/outputlog.txt
 
-outlog=outputlog.txt
+outlog=output.txt
+#output=output.txt
 #SetupNo=$(gawk '/.txt/' IcemcQCParameters.txt | wc -l)
 
-echo "Setup files used:" >> outputs/$outlog
+#echo "Setup files used:" >> outputs/$outlog
 #gawk '/.txt/{print $1, $2}' IcemcQCParameters.txt >> outputs/$outlog
 
 #Remove organization files/directories from previous run of Plotter (Do not remove icefinal.root since it will rewritten next time running QC)
@@ -36,10 +37,10 @@ rm -rf current_root
 #rm icefinal.root
 mkdir current_root
 
-today=$(gawk 'NR==1{print $3}' $outlog)
-echo $today
-yesterday=$(gawk 'NR==2{print $3}' $outlog)
-echo $yesterday
+#today=$(gawk 'NR==1{print $3}' $outlog)
+#echo $today
+#yesterday=$(gawk 'NR==2{print $3}' $outlog)
+#echo $yesterday
 
 ##grab the icefinal*.root output files
 ls -l | gawk '/icefinal/{print $7, $9}' >> $outlog
@@ -51,33 +52,33 @@ echo '# of output (*.root) files found: '$outNo
 echo "  "
 echo "Checking dates on output files..."
 echo "  "
-echo 'Output files used:'>>templog.txt
+#echo 'Output files used:'>>templog.txt
 
-for (( i = 1; i <= $outNo; i++ )) 
-	do
-	outputdate[$i]=$(gawk 'NR=='$i+2'{print $1}' $outlog)
-	echo 'run date: '$today
-	echo 'output date: '${outputdate[$i]}
-	if [ "${outputdate[$i]}" == "$today" ]; then
-		echo 'record #'$i' matches today'
-		outputfile=$(gawk 'NR=='$i+2'{print $2}' $outlog)
-		echo $outputfile >> templog.txt
-		cp icefinal$i.root current_root
-	elif [ "${outputdate[$i]}" == "$yesterday" ]; then
-		echo 'record #'$i' matches yesterday'
-		outputfile=$(gawk 'NR=='$i+2'{print $2}' $outlog)
-		echo $outputfile >> templog.txt
-		cp icefinal$i.root current_root
-	else
-		echo 'record #'$i' is too old...not included'
-	fi
-done
+#for (( i = 1; i <= $outNo; i++ )) 
+#	do
+#	outputdate[$i]=$(gawk 'NR=='$i+2'{print $1}' $output)
+#	echo 'run date: '$today
+#	echo 'output date: '${outputdate[$i]}
+#
+#if [ "${outputdate[$i]}" == "$today" ]; then
+#		echo 'record #'$i' matches today'
+#		outputfile=$(gawk 'NR=='$i+2'{print $2}' $outlog)
+#		echo $outputfile >> templog.txt
+#		cp icefinal$i.root current_root
+#	elif [ "${outputdate[$i]}" == "$yesterday" ]; then
+#		echo 'record #'$i' matches yesterday'
+#		outputfile=$(gawk 'NR=='$i+2'{print $2}' $outlog)
+#		echo $outputfile >> templog.txt
+#		cp icefinal$i.root current_root
+#	else
+#		echo 'record #'$i' is too old...not included'
+#	fi
+# done
 
-return
-
-mv templog.txt outputlog.txt
+#mv templog.txt outputlog.txt
 
 outNo=$(gawk '/.root/' $outlog | wc -l)
+echo $outNo
 #At this point we could have icefinal.root files that were created from different input scripts.  To deal with this, I create Setup files for each set of input files and add the appropriate icefinal* files to each one.
 ##grab setup file names and number of runs per setup file
 testdir=`pwd`
@@ -196,7 +197,7 @@ echo 'version is' $version
 cd $curr_dir
 cd ../plots
 make -f M.readPrimaries
-mkdir primaryplots
+mkdir Primaryplots
 for ((i = 1;i <= $SetupNo; i++ ))
         do
 	./readPrimaries $curr_dir/icemc/outputs/current_root/Setup$i/icefinal_$i.root
@@ -205,7 +206,7 @@ for ((i = 1;i <= $SetupNo; i++ ))
 	mv Setup$i rev${version}${setup[$i]}
 	cd ..
 	cd ..
-	cp primaryplots/. outputs/current_root/rev${version}${setup[$i]}/ -R
+	cp Primaryplots/. outputs/current_root/rev${version}${setup[$i]}/ -R
 	cp outputs/current_root/. /n/home00/hughes.525/public_html/closed_pages/plots/testplots/ -R	
 done
 echo 'what is this value?' ${setup[1]}
@@ -223,5 +224,5 @@ echo 'what is this value?' ${setup[1]}
 #cd primaryplots
 #cp *.pdf /n/home00/hughes.525/public_html/closed_pages/plots/primaryplots
 
-cd
-cd Practice
+#cd
+#cd Practice
