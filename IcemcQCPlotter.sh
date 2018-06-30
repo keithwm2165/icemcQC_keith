@@ -54,8 +54,8 @@ echo 'Output files used:'>>templog.txt
 for (( i = 1; i <= $outNo; i++ )) 
 	do
 	outputdate[$i]=$(gawk 'NR=='$i+2'{print $1}' $outlog)
-	#echo 'run date: '$today
-	#echo 'output date: '${outputdate[$i]}
+	echo 'run date: '$today
+	echo 'output date: '${outputdate[$i]}
 	if [ "${outputdate[$i]}" == "$today" ]; then
 		echo 'record #'$i' matches today'
 		outputfile=$(gawk 'NR=='$i+2'{print $2}' $outlog)
