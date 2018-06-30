@@ -71,6 +71,8 @@ for (( i = 1; i <= $outNo; i++ ))
 	fi
 done
 
+return
+
 mv templog.txt outputlog.txt
 
 outNo=$(gawk '/.root/' $outlog | wc -l)
