@@ -21,6 +21,6 @@ echo 'run number: '$RUN_NO
 echo 'output file: '$OUTPUTFILE
 echo "  "
 
-./icemc -i$LOCALDIR/$INPUTFILE -o/tmp/iceout$RUN_NO  &>> log_QC$RUN_NO.txt
+./icemc -i$LOCALDIR/$INPUTFILE -o icemc_outputs$RUN_NO -r $RUN_NO  &>> log_QC$RUN_NO.txt
 
 pbsdcp /tmp/iceout$RUN_NO/'*' $OUTPUTFILE
