@@ -52,7 +52,7 @@ int main(int argc, char **argv){
 	posnu_xy->GetYaxis()->SetTitle("Y Coordinate (m)"); //set the y-axis title
     posnu_xy->GetYaxis()->SetTitleOffset(1.5);
     posnu_xy->GetYaxis()->CenterTitle();
-	c->SaveAs("posnu_xy.pdf"); //save it
+	c->SaveAs("Primariesplots/posnu_xy.pdf"); //save it
 	delete posnu_xy; //cleanup
 	delete c;
 	
