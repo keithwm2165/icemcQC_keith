@@ -14,13 +14,15 @@
 echo "  "
 echo 'Starting IcemcQCPlotter'
 echo "  "
+cd ..
+current_dir=$pwd #current_dir=path/icemcQC_keith/
+echo $current_dir
 
 RUN_NO=$(gawk 'NR=='11'{print $1}' IcemcQCParameters.txt) #read run number from IcemcQCParameters.txt
 
-cd icemc
+cd ICEMCQC_rundir/icemc/
 echo 'current directory:'
 pwd
-current_dir=$pwd #current_dir=path/icemcQC_keith/ICEMCQC_rundir/icemc
 
 #In ICEMCQC_rundir/icemc directory
 rm -rf icefinal_root
@@ -31,22 +33,22 @@ cd icefinal_root
 for (( i = 1; i <= $RUN_NO; i++ ))
     do
     echo 'icefinal'$i'.root'
-    cp $current_dir/icemc_outputs$i/icefinal$i.root $current_dir/icefinal_root
+    cp $current_dir/ICEMCQC_rundir/icemc/icemc_outputs$i/icefinal$i.root $current_dir/icefinal_root
   done
 
 pwd
 
 echo "  "
 
-#echo "Submitting plots..."
+echo "Submitting plots..."
 #echo "  "
 #echo "Plot number is "$PlotNo
 #pwd
 
 cd ..
 #Back to ICEMCQC_rundir/icemc/
-cp $current_dir/../../plots/M.read_Primaries $current_dir
-cp $current_dir/../../plots/read_Primaries.cc $current_dir
+cp $current_dir/plots/M.read_Primaries $current_dir/ICEMCQC_rundir/icemc/
+cp $current_dir/plots/read_Primaries.cc $current_dir/ICEMCQC_rundir/icemc/
 
 #delete the past directory and create a new one
 rm -rf Primariesplots
