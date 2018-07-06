@@ -68,6 +68,8 @@ done
 
 pwd
 #now put plots into website directory
+#cd plots 
+#cp *.pdf ./.
 #cd  Primariesplots
 #cp *.pdf /n/home00/hughes.525/public_html/closed_pages/plots/primaryplots
 
