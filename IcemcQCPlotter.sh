@@ -51,8 +51,8 @@ cp $current_dir/plots/M.read_Primaries $current_dir/ICEMCQC_rundir/icemc/
 cp $current_dir/plots/read_Primaries.cc $current_dir/ICEMCQC_rundir/icemc/
 
 #delete the past directory and create a new one
-rm -rf Primariesplots
-mkdir Primariesplots
+#rm -rf Primariesplots
+#mkdir Primariesplots
 
 #compile read_Primaries.cc file to make plots
 make -f M.read_Primaries
@@ -64,8 +64,8 @@ done
 
 pwd
 #now put plots into website directory
-cd  Primariesplots
-cp *.pdf /n/home00/hughes.525/public_html/closed_pages/plots/primaryplots
+#cd  Primariesplots
+#cp *.pdf /n/home00/hughes.525/public_html/closed_pages/plots/primaryplots
 
 echo 'QCjobs complete! Good job!!!'
 return
