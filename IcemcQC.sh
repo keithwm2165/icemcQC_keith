@@ -25,6 +25,8 @@ echo "  "
 echo 'Edits:Keith McBride'
 echo 'August 2017'
 echo "  "
+echo 'Edits:Victoria Niu'
+echo 'Jun 2018'
 echo "  "
 echo "  "
 echo "  "
