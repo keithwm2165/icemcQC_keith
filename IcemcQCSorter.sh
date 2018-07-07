@@ -7,9 +7,9 @@
 ##  Author: Khalida Hendricks July 2014                           ##
 ##  hendricks.189@osu.edu                                         ##
 ##                                                                ##
-##  IcemcQCSorter organizes all IcemcQC products into           ##
+##  IcemcQCSorter organizes all IcemcQC products into             ##
 ##  appropriate folders by release/#.# or trunk/version#, then    ##
-##  by setupfile (or logs).  It then runs IcemcQCPlotter to      ##
+##  by setupfile (or logs).  It then runs IcemcQCPlotter to       ##
 ##  make required plots.                                          ##
 ##                                                                ##
 ####################################################################
