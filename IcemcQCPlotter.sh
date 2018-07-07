@@ -36,7 +36,7 @@ mkdir icefinal_root
 for (( i = 1; i <= $RUN_NO; i++ ))
     do
     echo 'icefinal'$i'.root'
-    cp $current_dir/ICEMCQC_rundir/icemc/icemc_outputs$i/icefinal$i.root $current_dir/icefinal_root
+    cp $current_dir/ICEMCQC_rundir/icemc/icemc_outputs$i/icefinal$i.root $current_dir/ICEMCQC_rundir/icemc/icefinal_root
   done
 
 echo "  "
