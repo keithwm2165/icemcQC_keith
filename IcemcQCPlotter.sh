@@ -9,6 +9,9 @@
 ##                                                                ##
 ##  Revised by Keith McBride                                      ##
 ##                                                                ##
+##  QCPlotter runs the plot code put in plots directory, makes    ##
+##  plots from icemc outputs, and submits the plots to QC website ##
+##                                                                ##
 ####################################################################
 
 #In the ICEMCQC_rundir directory when QCSubmit finished
