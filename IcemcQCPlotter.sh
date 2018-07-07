@@ -15,8 +15,10 @@ echo "  "
 echo 'Starting IcemcQCPlotter'
 echo "  "
 
+cd .. #go to icemcQC_keith
 current_dir=$(pwd) #current_dir is pwd
 echo $current_dir
+cd ICEMCQC_rundir #go back to ICEMCQC_rundir
 
 RUN_NO=$(gawk 'NR=='11'{print $1}' IcemcQCParameters.txt) #read run number from IcemcQCParameters.txt
 
