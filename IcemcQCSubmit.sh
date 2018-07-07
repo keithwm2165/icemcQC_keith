@@ -5,15 +5,17 @@
 ####################################################################
 ##                                                                ##
 ##  Author: Khalida Hendricks July 2014                           ##
-##  hendricks.189@osu.edu                                         ##
+##  hendricks.189@osu.edu            				  ##
+##								  ##
+##  Revised by Keith McBride and Victoria Niu Jun 2018		  ##
 ##                                                                ##
-##  IcemcQCSubmit runs multiple iterations of Icemc given     ##  
+##  IcemcQCSubmit runs multiple iterations of Icemc given         ##  
 ##  various setup file parameters, then makes plots and takes     ##
-##  statistics on the results in order to compare Icemc          ## 
+##  statistics on the results in order to compare Icemc           ## 
 ##  versions.                                                     ##
-##  IcemcQC is run automatically by IcemcQCTimer (or            ##
-##  IcemcVersion) but also can be run manually from any          ##
-##  Icemc directory on any version of Icemc.                    ##                                 ##
+##  IcemcQC is run automatically by IcemcQCTimer (or              ##
+##  IcemcVersion) but also can be run manually from any           ##
+##  Icemc directory on any version of Icemc.                      ##                                
 ##                                                                ##
 ####################################################################
 
@@ -32,13 +34,11 @@ dwell=$(gawk '/dwell/{print $2}' IcemcQCParameters.txt)
 echo 'input log file: ' $thislog
 echo "  "
 echo "  "
-#echo "RUNNING MAKE..."
+echo "RUNNING MAKE..."
 echo "  "
 echo "  "
 	
 rundir=$(gawk '/rundir/{print $2}' IcemcQCParameters.txt)
-#make clean
-#make
 
 echo "   "
 echo "   "
@@ -106,7 +106,6 @@ for (( i = 1; i <= $SetupNo; i++ ))
 		do
 		echo 'totrun value:'$totrun
 		qsub runIcemc.sh -v SRC_DIR=$updater_dir,INPUTFILE=${setup[$i]},RUN_NO=$totrun,OUTPUTFILE=$tgtdir,LOCALDIR=$localdir
-		#qsub runIcemc.sh -v INPUTFILE=inputsworking.txt,RUN_NO=$totrun,OUTPUTFILE=outputs,LOCALDIR=$localdir
 	let totrun=$totrun+1
 	done
 done
@@ -127,17 +126,12 @@ echo "   "
 date > submit.txt
 echo 'Submitted queue listing:' >> submit.txt
 qstat -u $USER >> submit.txt
-#return #see below for the +5 in NR== for gawk commands. need to change the 5 to get the record returned to correspond to the first job (maybe bigger or smaller than 5).
-# uncomment the above line of "return" and check the submit.txt file to see what it contains.Should be 2 jobs listed.  If the jobs arent showing up then they werent submitted properly.  
 
 echo -e "\n" >> $thislog
 
 grep -q "$USER" queue.txt
 prevstat=$?
 echo 'prevstat: '$prevstat
-#return
-# uncomment the above line of return to kill the code here and make sure prevstat is 0 since it should have been successful? prestat should be 0 or 1. 0 means found $USER in queue.txt. 1 means did not find $USER in queue.txt
-#$? gives the "exit status" of the most recent command, in this case the grep -q command. -q is to surpress the output of grep .
 
 prevNo=$(gawk "/$USER/{print $1}" queue.txt | wc -l)
 echo 'prevNo: '$prevNo
@@ -183,9 +177,6 @@ done
 echo 'At least '$totruns' jobs submitted? : '$check
 echo 'Total runs submitted: '$totruns
 
-##
-## here comes the hard part
-##
 
 echo "   "
 echo "   "
@@ -206,7 +197,6 @@ while (($complete < $totruns))
 	echo 'Check no. '$iteration
 	for (( i = 1; i <= $currNo; i++ )) 
 		do
-#this line needs to change
 		jobno=$(gawk 'BEGIN{ FS="." }NR=='$i+7'{print $1}' submit.txt) #the 5 is here because they knew that submit.txt (being from qstat on the other cluster) would give the first job submitted identification.
 		if [ $jobno -gt $high ]; then
 			phrase='jobno_'$jobno'_complete'
@@ -228,7 +218,6 @@ while (($complete < $totruns))
 	done
 	let iteration=$iteration+1
 
-#this line needs to change
 	complete=$(gawk "/_complete/{print $1}" $thislog | wc -l) #thislog is thisQClog.txt
 
 
@@ -243,5 +232,3 @@ echo "All jobs complete!"
 echo "   "
 
 . IcemcQCPlotter.sh
-
-## End program
