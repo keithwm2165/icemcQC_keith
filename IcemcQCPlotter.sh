@@ -75,5 +75,7 @@ pwd
 #cd  Primariesplots
 #cp *.pdf /n/home00/hughes.525/public_html/closed_pages/plots/primaryplots
 
+
 echo 'QCjobs complete! Good job!!!'
+cd $current_dir #back to icemcQC_keith
 return
