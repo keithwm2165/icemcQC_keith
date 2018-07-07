@@ -7,8 +7,9 @@
 ####################################################################
 ##                                                                ##
 ##  Author: Khalida Hendricks July 2014                           ##
-##  hendricks.189@osu.edu                                         ##                                 ##
-##                                                                ##
+##  hendricks.189@osu.edu                                         ##
+##  IcemcQC.sh starts running IcemcQC program        		  ##
+##								  ##
 ####################################################################
 
 echo "  "
