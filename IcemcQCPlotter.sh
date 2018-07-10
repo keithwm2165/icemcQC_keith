@@ -56,7 +56,10 @@ cp $current_dir/plots/read_Primaries.cc $current_dir/ICEMCQC_rundir/icemc/
 #Go back to ICEMCQC_rundir/icemc/
 cd ICEMCQC_rundir/icemc/ 
 
-#make a new directory for storing the plots made at the end of a QC run
+#Create a new directory to store plots, remove the previous one
+rm Primaries
+mkdir Primaries
+
 #compile read_Primaries.cc file to make plots
 make -f M.read_Primaries
 
@@ -67,7 +70,9 @@ directory_name=plots.$current_date.$i
 echo "directory where plots are stored is: " $current_dir/$directory_name
 mkdir $current_dir/$directory_name
 ./read_Primaries icefinal_root/icefinal$i.root
+cd Primaries
 cp *.pdf $current_dir/$directory_name/.
+cd ..
 done
 
 echo "current directory: "
