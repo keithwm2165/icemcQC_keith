@@ -117,16 +117,16 @@ int main(int argc, char *argv[])
     double r_fromballoon_sq;     // r_fromballoon squared
     
     
-	double d1;                   // Distance from Earth entrance to rock-ice boundary
-	double d2;                   // Distance from Rock-ice boundary to interaction point
+    double d1;                   // Distance from Earth entrance to rock-ice boundary
+    double d2;                   // Distance from Rock-ice boundary to interaction point
     double d1plusd2;             // Distance from Earth Entrance to Interaction Point
     int currentint;              // the charge of neurtinos;
     
     
     double chord;
-	double logchord;
-	double weight_bestcase;
-	double chord_kgm2_bestcase;
+    double logchord;
+    double weight_bestcase;
+    double chord_kgm2_bestcase;
     double dtryingdirection;
     
 	int nuflavorint;
@@ -145,7 +145,7 @@ int main(int argc, char *argv[])
 	passing_events->SetBranchAddress("weight", &weight);
 	passing_events->SetBranchAddress("r_in", &r_in);
 	passing_events->SetBranchAddress("r_enterice", &r_enterice);
-    passing_events->SetBranchAddress("nuexitlength", &nuexit);
+        passing_events->SetBranchAddress("nuexitlength", &nuexit);
 	passing_events->SetBranchAddress("d1", &d1);
 	passing_events->SetBranchAddress("d2", &d2);
 	passing_events->SetBranchAddress("current", &currentint);
@@ -155,18 +155,18 @@ int main(int argc, char *argv[])
 	passing_events->SetBranchAddress("r_exit2bn_measured", &r_exit2bn_measured);
 	passing_events->SetBranchAddress("nuflavor", &nuflavorint);
 	passing_events->SetBranchAddress("posnu", &posnu);
-    passing_events ->SetBranchAddress("chord",&chord);
+        passing_events ->SetBranchAddress("chord",&chord);
 	passing_events->SetBranchAddress("logchord", &logchord);
 	passing_events->SetBranchAddress("nuexitice", &nuexitice);
 	passing_events->SetBranchAddress("weight_bestcase", &weight_bestcase);
 	passing_events->SetBranchAddress("chord_kgm2_bestcase", &chord_kgm2_bestcase);
 	passing_events->SetBranchAddress("dtryingdirection", &dtryingdirection);
-    passing_events ->SetBranchAddress("dviewangle_deg",&dviewangle_deg);
-    passing_events ->SetBranchAddress("fresnel1",&fresnel1);
-    passing_events ->SetBranchAddress("fresnel2",&fresnel2);
-    passing_events ->SetBranchAddress("mytheta",&mytheta);
-    passing_events ->SetBranchAddress("mybeta",&mybeta);
-    passing_events ->SetBranchAddress("theta_rf_atbn",&theta_rf_atbn);
+        passing_events ->SetBranchAddress("dviewangle_deg",&dviewangle_deg);
+        passing_events ->SetBranchAddress("fresnel1",&fresnel1);
+        passing_events ->SetBranchAddress("fresnel2",&fresnel2);
+        passing_events ->SetBranchAddress("mytheta",&mytheta);
+        passing_events ->SetBranchAddress("mybeta",&mybeta);
+        passing_events ->SetBranchAddress("theta_rf_atbn",&theta_rf_atbn);
     
 	num_pass= passing_events->GetEntries();
     cout << endl;
@@ -726,13 +726,13 @@ int main(int argc, char *argv[])
     
     //c19.Interaction Angles->Costheta Histogram (costheta_nutraject)
     TCanvas *c19 = new TCanvas("c19", "costheta_nutraject", 1100,850);
-    TH1F *costheta_nutraject_hist = new TH1F("cos(θ)", "", 50, -0.2, 0.25);
+    TH1F *costheta_nutraject_hist = new TH1F("cos(theta)", "", 50, -0.2, 0.25);
     for (int k=0; k<num_pass; k++)
     {
         passing_events->GetEvent(k);
         costheta_nutraject_hist->Fill(costheta_nutraject, weight);
         //  cout << "Event: " << k << endl;
-        //  cout << "Cos(θ): " << costheta_nutraject << endl;
+        //  cout << "Cos(theta): " << costheta_nutraject << endl;
     }
     
     gStyle->SetOptTitle(1);
@@ -740,8 +740,8 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     costheta_nutraject_hist->Draw("HIST B");
-    costheta_nutraject_hist->SetTitle("Interaction Angle (Cos(θ)), Ε=10^20.00");
-    costheta_nutraject_hist->GetXaxis()->SetTitle("cos(θ) (θ is neutrino direction with earth center to balloon as z axis");
+    costheta_nutraject_hist->SetTitle("Interaction Angle (Cos(theta)), Ε=10^20.00");
+    costheta_nutraject_hist->GetXaxis()->SetTitle("cos(theta) (theta is neutrino direction with earth center to balloon as z axis");
     costheta_nutraject_hist->GetXaxis()->SetTitleOffset(1.0);
     costheta_nutraject_hist->GetXaxis()->CenterTitle();
     costheta_nutraject_hist->GetYaxis()->SetTitle("counts (weighted)");
