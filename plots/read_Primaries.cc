@@ -1086,7 +1086,7 @@ int main(int argc, char *argv[])
     
     //c31.Phi Angle of the Ray from the Surface to the Balloon Histogram (n_exit_phi)
     TCanvas *c31 = new TCanvas("c31", "n_exit_phi", 1100, 850);
-    TH1D *n_exit_phi_hist = new TH1D("n_exit_phi", "; n_exit_phi; counts", 100, -50, 50);
+    TH1D *n_exit_phi_hist = new TH1D("n_exit_phi", "; n_exit_phi; counts", 100, 0, 100);
     for (int k=0; k<num_pass; k++)
     {
         passing_events->GetEvent(k);
