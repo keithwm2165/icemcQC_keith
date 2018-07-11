@@ -1,3 +1,11 @@
+//
+//
+//Author: Victoria Niu
+//Created Time: Summer 2018 
+//
+//
+//REVISED FROM THE SCRIPTS WRITTEN BY OINDREE BANERJEE, BRIAN CLARK AND PREVIOUS QC GROUP
+//
 // C++&Canvas Heading
 #include <iostream>
 #include <fstream>
