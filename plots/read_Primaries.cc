@@ -567,7 +567,7 @@ int main(int argc, char *argv[])
     c11->Print("Primaries/dtryingdirection.png");
     gStyle->SetHistLineWidth(2);
     c11->Print("Primaries/dtryingdirection.pdf");
-    c11->Print("Primaries/dtrying Direction.root");
+    c11->Print("Primaries/dtryingdirection.root");
     /* dtryingdirection = weighting factor: how many equivalent tries each neutrino counts for after having reduced angular phase space for possibly detectable events    */
     delete c11;
     
