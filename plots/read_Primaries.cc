@@ -94,6 +94,7 @@ int main(int argc, char *argv[])
 	    readfile=argv[1];
 	  }
 	
+    
     TFile *AnitaFile = new TFile(( readfile ).c_str());   //Read AnitaFile(icefinal.root);
 	cout << "Reading AnitaFile..." << endl;
 	
@@ -133,8 +134,8 @@ int main(int argc, char *argv[])
     double r_fromballoon_sq;    // r_fromballoon squared
     
     
-    double d1;                   // Distance from Earth entrance to rock-ice boundary
-    double d2;                   // Distance from Rock-ice boundary to interaction point
+	double d1;                   // Distance from Earth entrance to rock-ice boundary
+	double d2;                   // Distance from Rock-ice boundary to interaction point
     double d1plusd2;             // Distance from Earth Entrance to Interaction Point
     int currentint;              // the charge of neurtinos;
     
@@ -161,7 +162,7 @@ int main(int argc, char *argv[])
 	passing_events->SetBranchAddress("weight", &weight);
 	passing_events->SetBranchAddress("r_in", &r_in);
 	passing_events->SetBranchAddress("r_enterice", &r_enterice);
-        passing_events->SetBranchAddress("nuexitlength", &nuexit);
+    passing_events->SetBranchAddress("nuexitlength", &nuexit);
 	passing_events->SetBranchAddress("d1", &d1);
 	passing_events->SetBranchAddress("d2", &d2);
 	passing_events->SetBranchAddress("current", &currentint);
@@ -171,23 +172,23 @@ int main(int argc, char *argv[])
 	passing_events->SetBranchAddress("r_exit2bn_measured", &r_exit2bn_measured);
 	passing_events->SetBranchAddress("nuflavor", &nuflavorint);
 	passing_events->SetBranchAddress("posnu", &posnu);
-        passing_events ->SetBranchAddress("chord",&chord);
+    passing_events ->SetBranchAddress("chord",&chord);
 	passing_events->SetBranchAddress("logchord", &logchord);
 	passing_events->SetBranchAddress("nuexitice", &nuexitice);
 	passing_events->SetBranchAddress("weight_bestcase", &weight_bestcase);
 	passing_events->SetBranchAddress("chord_kgm2_bestcase", &chord_kgm2_bestcase);
 	passing_events->SetBranchAddress("dtryingdirection", &dtryingdirection);
-        passing_events ->SetBranchAddress("dviewangle_deg",&dviewangle_deg);
-        passing_events ->SetBranchAddress("fresnel1",&fresnel1);
-        passing_events ->SetBranchAddress("fresnel2",&fresnel2);
-        passing_events ->SetBranchAddress("mytheta",&mytheta);
-        passing_events ->SetBranchAddress("mybeta",&mybeta);
-        passing_events ->SetBranchAddress("theta_rf_atbn",&theta_rf_atbn);
-        passing_events ->SetBranchAddress("n_exit_phi",&n_exit_phi);
+    passing_events ->SetBranchAddress("dviewangle_deg",&dviewangle_deg);
+    passing_events ->SetBranchAddress("fresnel1",&fresnel1);
+    passing_events ->SetBranchAddress("fresnel2",&fresnel2);
+    passing_events ->SetBranchAddress("mytheta",&mytheta);
+    passing_events ->SetBranchAddress("mybeta",&mybeta);
+    passing_events ->SetBranchAddress("theta_rf_atbn",&theta_rf_atbn);
+    passing_events ->SetBranchAddress("n_exit_phi",&n_exit_phi);
     
 	num_pass= passing_events->GetEntries();
-    	cout << endl;
-    	cout << "AnitaFile" << endl;
+    cout << endl;
+    cout << "AnitaFile" << endl;
 	cout << "num_pass is " << num_pass << endl;
 
     /*  For other branches to read:
@@ -238,7 +239,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.90);
     
     posnu_xy->Draw("colz"); //draw the histogram
-    posnu_xy->SetTitle("Locations of Interactions in Antarctica, E=10^20.00, N=2e6");
+    posnu_xy->SetTitle("Locations of Interactions in Antarctica");
     posnu_xy->GetXaxis()->SetTitle("X Coordinate (m)"); //set the x-axis title
     posnu_xy->GetXaxis()->SetTitleOffset(1.2);
     posnu_xy->GetXaxis()->CenterTitle();
@@ -272,7 +273,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.87);
     
     altitude_hist->Draw("HIST B");
-    altitude_hist->SetTitle("Depth of Interaction, E=10^20, N=2e6");
+    altitude_hist->SetTitle("Depth of Interaction");
     altitude_hist->GetXaxis()->SetTitle("Depth of Interaction (m)");
     altitude_hist->GetXaxis()->SetTitleOffset(1.2);
     altitude_hist->GetXaxis()->CenterTitle();
@@ -304,16 +305,16 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     r_fromballoon_hist->Draw("HIST B");
-    r_fromballoon_hist->SetTitle("Surface Distance of Interaction from Balloon,E=10^20.00, N=2e6");
+    r_fromballoon_hist->SetTitle("Surface Distance of Interaction from Balloon");
     r_fromballoon_hist->GetXaxis()->SetTitle("Surface Distance of Interaction (m)");
     r_fromballoon_hist->GetXaxis()->CenterTitle();
     r_fromballoon_hist->GetYaxis()->SetTitle("Triggered Events(Counts)");
     r_fromballoon_hist->GetYaxis()->CenterTitle();
     gStyle->SetHistLineWidth(9);
-    c3->Print("Primaries/Surface Distance from Balloon.png");
+    c3->Print("Primaries/r_fromballoon.png");
     gStyle->SetHistLineWidth(2);
-    c3->Print("Primaries/Surface Distance from Balloon.pdf");
-    c3->Print("Primaries/Surface Distance from Balloon.root");
+    c3->Print("Primaries/r_fromballoon.pdf");
+    c3->Print("Primaries/r_fromballoon.root");
     delete c3;
     
     
@@ -332,7 +333,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.87);
     
     nuflavorint_hist->Draw("HIST B");
-    nuflavorint_hist->SetTitle("Neutrino Flavors,E=10^20.00, N=2e6");
+    nuflavorint_hist->SetTitle("Neutrino Flavors");
     nuflavorint_hist->GetXaxis()->SetTitle("Neutrino Flavors (1=e, 2=muon, 3=tau)");
     nuflavorint_hist->GetYaxis()->SetTitle("Weigthed Fraction of Total Detected Events");
     nuflavorint_hist->GetXaxis()->SetTitleOffset(1.2);
@@ -341,10 +342,10 @@ int main(int argc, char *argv[])
     nuflavorint_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c4->Print("Primaries/Neutrino Flavors.png");
+    c4->Print("Primaries/nuflavorint.png");
     gStyle->SetHistLineWidth(2);
-    c4->Print("Primaries/Neutrino Flavors.pdf");
-    c4->Print("Primaries/Neutrino Flavors.root");
+    c4->Print("Primaries/nuflavorint.pdf");
+    c4->Print("Primaries/nuflavorint.root");
     delete c4;
     
     
@@ -364,17 +365,17 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     r_fromballoon_hist->Draw("HIST B");
-    r_fromballoon_hist->SetTitle("Surface Distance Squared of Interaction from Balloon,E=10^20.00, N=2e6");
+    r_fromballoon_hist->SetTitle("Surface Distance Squared of Interaction from Balloon");
     r_fromballoon_hist->GetXaxis()->SetTitle("Surface Distance of Interaction Squared (m^2)");
     r_fromballoon_hist->GetXaxis()->CenterTitle();
     r_fromballoon_hist->GetYaxis()->SetTitle("Triggered Events(Counts)");
     r_fromballoon_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c5->Print("Primaries/Surface Distance Squared.png");
+    c5->Print("Primaries/r_fromballoon_sq.png");
     gStyle->SetHistLineWidth(2);
-    c5->Print("Primaries/Surface Distance Squared.pdf");
-    c5->Print("Primaries/Surface Distance Squared.root");
+    c5->Print("Primaries/r_fromballoon_sq.pdf");
+    c5->Print("Primaries/r_fromballoon_sq.root");
     delete c5;
     
     
@@ -401,9 +402,12 @@ int main(int argc, char *argv[])
     }
     
     r_fromballoon_vs_depth_int->Draw("colz");
-    r_fromballoon_vs_depth_int->SetTitle("Surface Distance of Interaction from Balloon vs Depth, E=10^20.00, N=2e6");
+    r_fromballoon_vs_depth_int->SetTitle("Surface Distance of Interaction from Balloon vs Depth");
     r_fromballoon_vs_depth_int->SetTitleOffset(1.2);
-    c6->SaveAs("Primaries/SurfaceDist_vs_Depth.pdf");
+    c6->SaveAs("Primaries/r_fromballoon_vs_altitude_int.png");
+    c6->SaveAs("Primaries/r_fromballoon_vs_altitude_int.pdf");
+    c6->SaveAs("Primaries/r_fromballoon_vs_altitude_int.root");
+    
     delete c6;
     
     
@@ -430,13 +434,13 @@ int main(int argc, char *argv[])
         r_fromballoon_sq_vs_depth_int->Fill(r_fromballoon_sq,depth_int,weight);
     }
     r_fromballoon_sq_vs_depth_int->Draw("colz");
-    r_fromballoon_sq_vs_depth_int->SetTitle("Surface Distance Squared of Interaction from Balloon vs Depth, E=10^20.00, N=2e6");
+    r_fromballoon_sq_vs_depth_int->SetTitle("Surface Distance Squared of Interaction from Balloon vs Depth");
     
     gStyle->SetHistLineWidth(9);
-    c7->SaveAs("Primaries/SurfaceDistSq_vs_Depth.png");
+    c7->SaveAs("Primaries/r_fromballoon_sq_vs_altitude_int.png");
     gStyle->SetHistLineWidth(2);
-    c7->SaveAs("Primaries/SurfaceDistSq_vs_Depth.pdf");
-    c7->SaveAs("Primaries/SurfaceDistSq_vs_Depth.root");
+    c7->SaveAs("Primaries/r_fromballoon_sq_vs_altitude_int.pdf");
+    c7->SaveAs("Primaries/r_fromballoon_sq_vs_altitude_int.root");
     delete c7;
     
     
@@ -456,7 +460,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.87);
     
     fresnel_1->Draw("HIST B");
-    fresnel_1->SetTitle("Fresnel Coefficient at Air-Firn Interface, E=10^20.00, N=2e6");
+    fresnel_1->SetTitle("Fresnel Coefficient at Air-Firn Interface");
     fresnel_1->GetXaxis()->SetTitle("Fresnel Coefficient");
     fresnel_1->GetXaxis()->SetTitleOffset(1.0);
     fresnel_1->GetXaxis()->CenterTitle();
@@ -464,10 +468,10 @@ int main(int argc, char *argv[])
     fresnel_1->GetYaxis()->SetTitleOffset(1.0);
     fresnel_1->GetYaxis()->CenterTitle();
     gStyle->SetHistLineWidth(9);
-    c8->Print("Primaries/Fresnel1.png");
+    c8->Print("Primaries/fresnel1.png");
     gStyle->SetHistLineWidth(2);
-    c8->Print("Primaries/Fresnel1.pdf");
-    c8->Print("Primaries/Fresnel1.root");
+    c8->Print("Primaries/fresnel1.pdf");
+    c8->Print("Primaries/fresnel1.root");
     delete c8;
     
     
@@ -487,7 +491,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.87);
     
     fresnel_2->Draw("HIST B");
-    fresnel_2->SetTitle("Fresnel Coefficient at Air-Firn Interface, E=10^20.00, N=2e6");
+    fresnel_2->SetTitle("Fresnel Coefficient at Air-Firn Interface");
     fresnel_2->GetXaxis()->SetTitle("Fresnel Coefficient");
     fresnel_2->GetXaxis()->SetTitleOffset(1.0);
     fresnel_2->GetXaxis()->CenterTitle();
@@ -496,10 +500,10 @@ int main(int argc, char *argv[])
     fresnel_2->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c9->Print("Primaries/Fresnel2.png");
+    c9->Print("Primaries/fresnel2.png");
     gStyle->SetHistLineWidth(2);
-    c9->Print("Primaries/Fresnel2.pdf");
-    c9->Print("Primaries/Fresnel2.root");
+    c9->Print("Primaries/fresnel2.pdf");
+    c9->Print("Primaries/fresnel2.root");
     delete c9;
     
     
@@ -519,7 +523,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.87);
     
     currentint_hist->Draw("HIST B");
-    currentint_hist->SetTitle("The Charge of Neutrinos, E=10^20.00, N=2e6");
+    currentint_hist->SetTitle("The Charge of Neutrinos");
     currentint_hist->GetXaxis()->SetTitle("current: 0 is neutral, 1 is charged");
     currentint_hist->GetXaxis()->SetTitleOffset(1.2);
     currentint_hist->GetXaxis()->CenterTitle();
@@ -528,10 +532,10 @@ int main(int argc, char *argv[])
     currentint_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c10->Print("Primaries/Current of Neutrinos.png");
+    c10->Print("Primaries/currentint.png");
     gStyle->SetHistLineWidth(2);
-    c10->Print("Primaries/Current of Neutrinos.pdf");
-    c10->Print("Primaries/Current of Neutrinos.root");
+    c10->Print("Primaries/currentint.pdf");
+    c10->Print("Primaries/currentint.root");
     delete c10;
     
     
@@ -551,7 +555,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.87);
     
     dtrying_hist->Draw("HIST B");
-    dtrying_hist->SetTitle("Dtrying Directions of Neutrinos, E=10^20.00, N=2e6");
+    dtrying_hist->SetTitle("Dtrying Directions of Neutrinos");
     dtrying_hist->GetXaxis()->SetTitle("equivalent tries");
     dtrying_hist->GetXaxis()->SetTitleOffset(1.2);
     dtrying_hist->GetXaxis()->CenterTitle();
@@ -560,9 +564,9 @@ int main(int argc, char *argv[])
     dtrying_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c11->Print("Primaries/Dtrying Direction.png");
+    c11->Print("Primaries/dtryingdirection.png");
     gStyle->SetHistLineWidth(2);
-    c11->Print("Primaries/Dtrying Direction.pdf");
+    c11->Print("Primaries/dtryingdirection.pdf");
     c11->Print("Primaries/Dtrying Direction.root");
     /* dtryingdirection = weighting factor: how many equivalent tries each neutrino counts for after having reduced angular phase space for possibly detectable events    */
     delete c11;
@@ -584,7 +588,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     chord_kgm2_bestcase_hist->Draw("HIST B");
-    chord_kgm2_bestcase_hist->SetTitle("Traverse Chord Length (if neutrino all was crust density), E=10^20.00, N=2e6");
+    chord_kgm2_bestcase_hist->SetTitle("Traverse Chord Length (if neutrino all was crust density)");
     chord_kgm2_bestcase_hist->GetXaxis()->SetTitle("chord length (from ice entrance to interaction point)(m)");
     chord_kgm2_bestcase_hist->GetXaxis()->SetTitleOffset(1.0);
     chord_kgm2_bestcase_hist->GetXaxis()->CenterTitle();
@@ -593,10 +597,10 @@ int main(int argc, char *argv[])
     chord_kgm2_bestcase_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c12->Print("Primaries/Traverse Chord Length.png");
+    c12->Print("Primaries/chord_kgm2_bestcase.png");
     gStyle->SetHistLineWidth(2);
-    c12->Print("Primaries/Traverse Chord Length.pdf");
-    c12->Print("Primaries/Traverse Chord Length.root");
+    c12->Print("Primaries/chord_kgm2_bestcase.pdf");
+    c12->Print("Primaries/chord_kgm2_bestcase.root");
     // the chord the neutrino would traverse if it all was crust density;
     delete c12;
 
@@ -617,7 +621,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     weight_bestcase_hist->Draw("HIST B");
-    weight_bestcase_hist->SetTitle("Best Case Weight, E=10^20.00, N=2e6");
+    weight_bestcase_hist->SetTitle("Best Case Weight");
     weight_bestcase_hist->GetXaxis()->SetTitle("weight if all earth had density of the crust");
     weight_bestcase_hist->GetXaxis()->SetTitleOffset(1.0);
     weight_bestcase_hist->GetXaxis()->CenterTitle();
@@ -626,10 +630,10 @@ int main(int argc, char *argv[])
     weight_bestcase_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c13->Print("Primaries/Best Case Weight.png");
+    c13->Print("Primaries/weight_bestcase.png");
     gStyle->SetHistLineWidth(2);
-    c13->Print("Primaries/Best Case Weight.pdf");
-    c13->Print("Primaries/Best Case Weight.root");
+    c13->Print("Primaries/weight_bestcase.pdf");
+    c13->Print("Primaries/weight_bestcase.root");
     // what weight1 would be if whole earth had density of crust - for quick and dirty calculation of best case scenario
     delete c13;
     
@@ -650,7 +654,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     logchord_hist->Draw("HIST B");
-    logchord_hist->SetTitle("Log of Chord Length, E=10^20.00, N=2e6");
+    logchord_hist->SetTitle("Log of Chord Length");
     logchord_hist->GetXaxis()->SetTitle("log_10(chord)");
     logchord_hist->GetXaxis()->SetTitleOffset(1.0);
     logchord_hist->GetXaxis()->CenterTitle();
@@ -659,10 +663,10 @@ int main(int argc, char *argv[])
     logchord_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c14->Print("Primaries/Log(chord).png");
+    c14->Print("Primaries/logchord.png");
     gStyle->SetHistLineWidth(2);
-    c14->Print("Primaries/Log(chord).pdf");
-    c14->Print("Primaries/Log(chord).root");
+    c14->Print("Primaries/logchord.pdf");
+    c14->Print("Primaries/logchord.root");
     delete c14;
     
     
@@ -681,7 +685,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     r_exit2bn_hist->Draw("HIST B");
-    r_exit2bn_hist->SetTitle("Surface Distance of Neutrino When Exiting Balloon, E=10^20.00, N=2e6");
+    r_exit2bn_hist->SetTitle("Surface Distance of Neutrino When Exiting Balloon");
     r_exit2bn_hist->GetXaxis()->SetTitle("Distance from Exit to Balloon (m)");
     r_exit2bn_hist->GetXaxis()->SetTitleOffset(1.0);
     r_exit2bn_hist->GetXaxis()->CenterTitle();
@@ -690,10 +694,10 @@ int main(int argc, char *argv[])
     r_exit2bn_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c15->Print("Primaries/Surface Distance When Exiting.png");
+    c15->Print("Primaries/r_exit2bn.png");
     gStyle->SetHistLineWidth(2);
-    c15->Print("Primaries/Surface Distance When Exiting.pdf");
-    c15->Print("Primaries/Surface Distance When Exiting.root");
+    c15->Print("Primaries/r_exit2bn.pdf");
+    c15->Print("Primaries/r_exit2bn.root");
     delete c15;
     
     
@@ -712,7 +716,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     r_exit2bn_measured_hist->Draw("HIST B");
-    r_exit2bn_measured_hist->SetTitle("Measured Surface Distance of Neutrino When Exiting Balloon, E=10^20.00, N=2e6");
+    r_exit2bn_measured_hist->SetTitle("Measured Surface Distance of Neutrino When Exiting Balloon");
     r_exit2bn_measured_hist->GetXaxis()->SetTitle("Measured Distance from Exit to Balloon (m)");
     r_exit2bn_measured_hist->GetXaxis()->SetTitleOffset(1.0);
     r_exit2bn_measured_hist->GetXaxis()->CenterTitle();
@@ -721,10 +725,10 @@ int main(int argc, char *argv[])
     r_exit2bn_measured_hist->GetYaxis()->CenterTitle();
 
     gStyle->SetHistLineWidth(9);
-    c16->Print("Primaries/Measured Surface Distance When Exiting.png");
+    c16->Print("Primaries/r_exit2bn_measured.png");
     gStyle->SetHistLineWidth(2);
-    c16->Print("Primaries/Measured Surface Distance When Exiting.pdf");
-    c16->Print("Primaries/Measured Surface Distance When Exiting.root");
+    c16->Print("Primaries/r_exit2bn_measured.pdf");
+    c16->Print("Primaries/r_exit2bn_measured.root");
     delete c16;
     
     
@@ -745,7 +749,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     nuexit_hist->Draw("HIST B");
-    nuexit_hist->SetTitle("Neutrinos Exit the Earth, E=10^20.00, N=2e6");
+    nuexit_hist->SetTitle("Neutrinos Exit the Earth");
     nuexit_hist->GetXaxis()->SetTitle("where neutrino would have left the Earth (m)");
     nuexit_hist->GetXaxis()->SetTitleOffset(1.0);
     nuexit_hist->GetXaxis()->CenterTitle();
@@ -754,10 +758,10 @@ int main(int argc, char *argv[])
     nuexit_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c17->Print("Primaries/Neutrino Exit Earth.png");
+    c17->Print("Primaries/nuexit.png");
     gStyle->SetHistLineWidth(2);
-    c17->Print("Primaries/Neutrino Exit Earth.pdf");
-    c17->Print("Primaries/Neutrino Exit Earth.root");
+    c17->Print("Primaries/nuexit.pdf");
+    c17->Print("Primaries/nuexit.root");
     delete c17;
     
     
@@ -777,7 +781,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     nuexitice_hist->Draw("HIST B");
-    nuexitice_hist->SetTitle("Neutrinos Exit the Ice, E=10^20.00, N=2e6");
+    nuexitice_hist->SetTitle("Neutrinos Exit the Ice");
     nuexitice_hist->GetXaxis()->SetTitle("where neutrino would have left the ice (m)");
     nuexitice_hist->GetXaxis()->SetTitleOffset(1.0);
     nuexitice_hist->GetXaxis()->CenterTitle();
@@ -786,10 +790,10 @@ int main(int argc, char *argv[])
     nuexitice_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c18->Print("Primaries/Neutrino Exit Ice.png");
+    c18->Print("Primaries/nuexitice.png");
     gStyle->SetHistLineWidth(2);
-    c18->Print("Primaries/Neutrino Exit Ice.pdf");
-    c18->Print("Primaries/Neutrino Exit Ice.root");
+    c18->Print("Primaries/nuexitice.pdf");
+    c18->Print("Primaries/nuexitice.root");
     delete c18;
     
     
@@ -809,7 +813,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     costheta_nutraject_hist->Draw("HIST B");
-    costheta_nutraject_hist->SetTitle("Cos(theta) of Trajectory from Balloon Coordinate System, E=10^20.00, N=2e6");
+    costheta_nutraject_hist->SetTitle("Cos(theta) of Trajectory from Balloon Coordinate System");
     costheta_nutraject_hist->GetXaxis()->SetTitle("cos(theta)");
     costheta_nutraject_hist->GetXaxis()->SetTitleOffset(1.0);
     costheta_nutraject_hist->GetXaxis()->CenterTitle();
@@ -818,10 +822,10 @@ int main(int argc, char *argv[])
     costheta_nutraject_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c19->Print("Primaries/Cos(θ).png");
+    c19->Print("Primaries/costheta_nutraject.png");
     gStyle->SetHistLineWidth(2);
-    c19->Print("Primaries/Cos(θ).pdf");
-    c19->Print("Primaries/Cos(θ).root");
+    c19->Print("Primaries/costheta_nutraject.pdf");
+    c19->Print("Primaries/costheta_nutraject.root");
     delete c19;
     
     
@@ -842,7 +846,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     d1_hist->Draw("HIST B");
-    d1_hist->SetTitle("d1: Earth Entrance to Rock-Ice Boundary, E=10^20.00, N=2e6");
+    d1_hist->SetTitle("d1: Earth Entrance to Rock-Ice Boundary");
     d1_hist->GetXaxis()->SetTitle("Distance(m)");
     d1_hist->GetXaxis()->SetTitleOffset(1.0);
     d1_hist->GetXaxis()->CenterTitle();
@@ -875,7 +879,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     d2_hist->Draw("HIST B");
-    d2_hist->SetTitle("d2: Ice-rock Boundary to Interaction Point, E=10^20.00, N=2e6");
+    d2_hist->SetTitle("d2: Ice-rock Boundary to Interaction Point");
     d2_hist->GetXaxis()->SetTitle("Distance(m)");
     d2_hist->GetXaxis()->SetTitleOffset(1.0);
     d2_hist->GetXaxis()->CenterTitle();
@@ -909,7 +913,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     d1plusd2_hist->Draw("HIST B");
-    d1plusd2_hist->SetTitle("Earth Entrance to Interaction Point, E=10^20.00, N=2e6");
+    d1plusd2_hist->SetTitle("Earth Entrance to Interaction Point");
     d1plusd2_hist->GetXaxis()->SetTitle("Distance(m)");
     d1plusd2_hist->GetXaxis()->SetTitleOffset(1.0);
     d1plusd2_hist->GetXaxis()->CenterTitle();
@@ -941,7 +945,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.90);
     
     nnu_hist->Draw("colz");
-    nnu_hist->SetTitle("Direction of Neutrinos(+z in south pole direction), E=10^20.00, N=2e6");
+    nnu_hist->SetTitle("Direction of Neutrinos(+z in south pole direction)");
     nnu_hist->GetXaxis()->SetTitle("X Coordinate(m)");
     nnu_hist->GetXaxis()->SetTitleOffset(1.0);
     nnu_hist->GetXaxis()->CenterTitle();
@@ -950,10 +954,10 @@ int main(int argc, char *argv[])
     nnu_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c23->Print("Primaries/Neurtino Trajectory.png");
+    c23->Print("Primaries/nnu.png");
     gStyle->SetHistLineWidth(2);
-    c23->Print("Primaries/Neurtino Trajectory.pdf");
-    c23->Print("Primaries/Neurtino Trajectory.root");
+    c23->Print("Primaries/nnu.pdf");
+    c23->Print("Primaries/nnu.root");
     delete c23;
 
     
@@ -974,7 +978,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     phi_nutraject_hist->Draw("HIST B");
-    phi_nutraject_hist->SetTitle("Interaction Angle (Phi), Ε=10^20.00, N=2e6");
+    phi_nutraject_hist->SetTitle("Interaction Angle (Phi)");
     phi_nutraject_hist->GetXaxis()->SetTitle("Phi (Phi of neutrino direction with earth center to balloon as z axis");
     phi_nutraject_hist->GetXaxis()->SetTitleOffset(1.0);
     phi_nutraject_hist->GetXaxis()->CenterTitle();
@@ -984,10 +988,10 @@ int main(int argc, char *argv[])
    
    
     gStyle->SetHistLineWidth(9);
-    c24->Print("Primaries/Phi.png");
+    c24->Print("Primaries/phi_nutraject.png");
     gStyle->SetHistLineWidth(2);
-    c24->Print("Primaries/Phi.pdf");
-    c24->Print("Primaries/Phi.root");
+    c24->Print("Primaries/phi_nutraject.pdf");
+    c24->Print("Primaries/phi_nutraject.root");
     delete c24;
     
     
@@ -1008,7 +1012,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     phi_hist->Draw("HIST B");
-    phi_hist->SetTitle("Interaction Angle (Phi), E=10^20.00, N=2e6");
+    phi_hist->SetTitle("Interaction Angle (Phi)");
     phi_hist->GetXaxis()->SetTitle("Phi (Degree)");
     phi_hist->GetXaxis()->SetTitleOffset(1.0);
     phi_hist->GetXaxis()->CenterTitle();
@@ -1017,10 +1021,10 @@ int main(int argc, char *argv[])
     phi_hist->GetYaxis()->CenterTitle();
    
     gStyle->SetHistLineWidth(9);
-    c25->Print("Primaries/Phi(Degree).png");
+    c25->Print("Primaries/phi(Degree).png");
     gStyle->SetHistLineWidth(2);
-    c25->Print("Primaries/Phi(Degree).pdf");
-    c25->Print("Primaries/Phi(Degree).root");
+    c25->Print("Primaries/phi(Degree).pdf");
+    c25->Print("Primaries/phi(Degree).root");
     delete c25;                                             */
     
     
@@ -1041,7 +1045,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     theta_hist->Draw("HIST B");
-    theta_hist->SetTitle("Interaction Angle (Theta), E=10^20.00, N=2e6");
+    theta_hist->SetTitle("Interaction Angle (Theta)");
     theta_hist->GetXaxis()->SetTitle("Theta (Degree)");
     theta_hist->GetXaxis()->SetTitleOffset(1.0);
     theta_hist->GetXaxis()->CenterTitle();
@@ -1050,10 +1054,10 @@ int main(int argc, char *argv[])
     theta_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c26->Print("Primaries/Theta(Degree).png");
+    c26->Print("Primaries/theta.png");
     gStyle->SetHistLineWidth(2);
-    c26->Print("Primaries/Theta(Degree).pdf");
-    c26->Print("Primaries/Theta(Degree).root");
+    c26->Print("Primaries/theta.pdf");
+    c26->Print("Primaries/theta.root");
     delete c26;
     
     
@@ -1074,7 +1078,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     r_in_hist->Draw("HIST B");
-    r_in_hist->SetTitle("Position(Magnitude) where Neutrino Enters the Earth, E=10^20.00, N=2e6");
+    r_in_hist->SetTitle("Position(Magnitude) where Neutrino Enters the Earth");
     r_in_hist->GetXaxis()->SetTitle("Distance(m)");
     r_in_hist->GetXaxis()->SetTitleOffset(1.0);
     r_in_hist->GetXaxis()->CenterTitle();
@@ -1083,10 +1087,10 @@ int main(int argc, char *argv[])
     r_in_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c27->Print("Primaries/Neutrino Enters Earth.png");
+    c27->Print("Primaries/r_in.png");
     gStyle->SetHistLineWidth(2);
-    c27->Print("Primaries/Neutrino Enters Earth.pdf");
-    c27->Print("Primaries/Neutrino Enters Earth.root");
+    c27->Print("Primaries/r_in.pdf");
+    c27->Print("Primaries/r_in.root");
     delete c27;
     
     
@@ -1107,7 +1111,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     r_enterice_hist->Draw("HIST B");
-    r_enterice_hist->SetTitle("Position where Neutrino Enters the Ice, E=10^20.00, N=2e6");
+    r_enterice_hist->SetTitle("Position where Neutrino Enters the Ice");
     r_enterice_hist->GetXaxis()->SetTitle("Distance(m)");
     r_enterice_hist->GetXaxis()->SetTitleOffset(1.0);
     r_enterice_hist->GetXaxis()->CenterTitle();
@@ -1116,10 +1120,10 @@ int main(int argc, char *argv[])
     r_enterice_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c28->Print("Primaries/Neutrino Enters Ice.png");
+    c28->Print("Primaries/r_enterice.png");
     gStyle->SetHistLineWidth(2);
-    c28->Print("Primaries/Neutrino Enters Ice.pdf");
-    c28->Print("Primaries/Neutrino Enters Ice.root");
+    c28->Print("Primaries/r_enterice.pdf");
+    c28->Print("Primaries/r_enterice.root");
     delete c28;
     
     
@@ -1139,7 +1143,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     chord_hist->Draw("HIST B");
-    chord_hist->SetTitle("Chord from Earth Entrance to Rock-Ice Boundary, E=10^20.00, N=2e6");
+    chord_hist->SetTitle("Chord from Earth Entrance to Rock-Ice Boundary");
     chord_hist->GetXaxis()->SetTitle("chord(m)");
     chord_hist->GetXaxis()->SetTitleOffset(1.0);
     chord_hist->GetXaxis()->CenterTitle();
@@ -1148,10 +1152,10 @@ int main(int argc, char *argv[])
     chord_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c29->Print("Primaries/Chord.png");
+    c29->Print("Primaries/chord.png");
     gStyle->SetHistLineWidth(2);
-    c29->Print("Primaries/Chord.pdf");
-    c29->Print("Primaries/Chord.root");
+    c29->Print("Primaries/chord.pdf");
+    c29->Print("Primaries/chord.root");
     delete c29;
     
     
@@ -1171,7 +1175,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     dviewangle_deg_hist->Draw("HIST B");
-    dviewangle_deg_hist->SetTitle("Deviation from the Cerenkov Angle, E=10^20.00, N=2e6");
+    dviewangle_deg_hist->SetTitle("Deviation from the Cerenkov Angle");
     dviewangle_deg_hist->GetXaxis()->SetTitle("Deviation");
     dviewangle_deg_hist->GetXaxis()->SetTitleOffset(1.0);
     dviewangle_deg_hist->GetXaxis()->CenterTitle();
@@ -1180,10 +1184,10 @@ int main(int argc, char *argv[])
     dviewangle_deg_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c30->Print("Primaries/Deviation.png");
+    c30->Print("Primaries/deviewanle_deg.png");
     gStyle->SetHistLineWidth(2);
-    c30->Print("Primaries/Deviation.pdf");
-    c30->Print("Primaries/Deviation.root");
+    c30->Print("Primaries/deviewangle_deg.pdf");
+    c30->Print("Primaries/deviewangle_deg.root");
     delete c30;
     
     
@@ -1203,7 +1207,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     n_exit_phi_hist->Draw("HIST B");
-    n_exit_phi_hist->SetTitle("Phi Angle of the Ray from the Surface to the Balloon, E=10^20.00, N=2e6");
+    n_exit_phi_hist->SetTitle("Phi Angle of the Ray from the Surface to the Balloon");
     n_exit_phi_hist->GetXaxis()->SetTitle("Phi");
     n_exit_phi_hist->GetXaxis()->SetTitleOffset(1.0);
     n_exit_phi_hist->GetXaxis()->CenterTitle();
@@ -1212,10 +1216,10 @@ int main(int argc, char *argv[])
     n_exit_phi_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c31->Print("Primaries/Exit Phi Angle.png");
+    c31->Print("Primaries/n_exit_phi.png");
     gStyle->SetHistLineWidth(2);
-    c31->Print("Primaries/Exit Phi Angle.pdf");
-    c31->Print("Primaries/Exit Phi Angle.root");
+    c31->Print("Primaries/n_exit_phi.pdf");
+    c31->Print("Primaries/n_exit_phi.root");
     delete c31;
     
     
@@ -1235,7 +1239,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     mytheta_hist->Draw("HIST B");
-    mytheta_hist->SetTitle("Alpha minus 90 Degrees, E=10^20.00, N=2e6");
+    mytheta_hist->SetTitle("Alpha minus 90 Degrees");
     mytheta_hist->GetXaxis()->SetTitle("Degree");
     mytheta_hist->GetXaxis()->SetTitleOffset(1.0);
     mytheta_hist->GetXaxis()->CenterTitle();
@@ -1244,10 +1248,10 @@ int main(int argc, char *argv[])
     mytheta_hist->GetYaxis()->CenterTitle();
 
     gStyle->SetHistLineWidth(9);
-    c32->Print("Primaries/Mytheta.png");
+    c32->Print("Primaries/mytheta.png");
     gStyle->SetHistLineWidth(2);
-    c32->Print("Primaries/Mytheta.pdf");
-    c32->Print("Primaries/Mytheta.root");
+    c32->Print("Primaries/mytheta.pdf");
+    c32->Print("Primaries/mytheta.root");
     delete c32;
     
     
@@ -1267,7 +1271,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     mybeta_hist->Draw("HIST B");
-    mybeta_hist->SetTitle("Beta minus 90 degrees, E=10^20.00, N=2e6");
+    mybeta_hist->SetTitle("Beta minus 90 degrees");
     mybeta_hist->GetXaxis()->SetTitle("Degree");
     mybeta_hist->GetXaxis()->SetTitleOffset(1.0);
     mybeta_hist->GetXaxis()->CenterTitle();
@@ -1276,10 +1280,10 @@ int main(int argc, char *argv[])
     mybeta_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c33->Print("Primaries/Mybeta.png");
+    c33->Print("Primaries/mybeta.png");
     gStyle->SetHistLineWidth(2);
-    c33->Print("Primaries/Mybeta.pdf");
-    c33->Print("Primaries/Mybeta.root");
+    c33->Print("Primaries/mybeta.pdf");
+    c33->Print("Primaries/mybeta.root");
     delete c33;
     
     
@@ -1299,7 +1303,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     theta_rf_atbn_hist->Draw("HIST B");
-    theta_rf_atbn_hist->SetTitle("Polar Angle of the Signal seen by Perfect Eyes at the Balloon, E=10^20.00, N=2e6");
+    theta_rf_atbn_hist->SetTitle("Polar Angle of the Signal seen by Perfect Eyes at the Balloon");
     theta_rf_atbn_hist->GetXaxis()->SetTitle("Degree");
     theta_rf_atbn_hist->GetXaxis()->SetTitleOffset(1.0);
     theta_rf_atbn_hist->GetXaxis()->CenterTitle();
@@ -1308,10 +1312,10 @@ int main(int argc, char *argv[])
     theta_rf_atbn_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c34->Print("Primaries/Polar Angle at Balloon.png");
+    c34->Print("Primaries/theta_rf_atbn.png");
     gStyle->SetHistLineWidth(2);
-    c34->Print("Primaries/Polar Angle at Balloon.pdf");
-    c34->Print("Primaries/Polar Angle at Balloon.root");
+    c34->Print("Primaries/theta_rf_atbn.pdf");
+    c34->Print("Primaries/theta_rf_atbn.root");
     delete c34;
     
     
@@ -1343,7 +1347,7 @@ int main(int argc, char *argv[])
     c35->cd(1);
     nnucostheta_hist->Draw("HIST B");
     nnucostheta_hist->SetTitle("NNU Cos(Theta)");
-    nnucostheta_hist->GetXaxis()->SetTitle("cos(theta) of neutrino direction, E=10^20.00, N=2e6");
+    nnucostheta_hist->GetXaxis()->SetTitle("cos(theta) of neutrino direction");
     nnucostheta_hist->GetXaxis()->SetTitleOffset(1.2);
     nnucostheta_hist->GetXaxis()->CenterTitle();
     nnucostheta_hist->GetYaxis()->SetTitle("counts (weighted)");
@@ -1357,7 +1361,7 @@ int main(int argc, char *argv[])
     c35->cd(2);
     nnuphi_hist->Draw("HIST B");
     nnuphi_hist->SetTitle("NNU Phi");
-    nnuphi_hist->GetXaxis()->SetTitle("phi of neutrino direction, E=10^20.00, N=2e6");
+    nnuphi_hist->GetXaxis()->SetTitle("phi of neutrino direction");
     nnuphi_hist->GetXaxis()->SetTitleOffset(1.2);
     nnuphi_hist->GetXaxis()->CenterTitle();
     nnuphi_hist->GetYaxis()->SetTitle("counts (weighted)");
@@ -1398,7 +1402,7 @@ int main(int argc, char *argv[])
     
     c36->cd(1);
     rincostheta_hist->Draw("HIST B");
-    rincostheta_hist->SetTitle("Cos(theta) of Neutrino Entrance Vector, E=10^20.00, N=2e6");
+    rincostheta_hist->SetTitle("Cos(theta) of Neutrino Entrance Vector");
     rincostheta_hist->GetXaxis()->SetTitle("cos(theta)");
     rincostheta_hist->GetXaxis()->SetTitleOffset(1.0);
     rincostheta_hist->GetXaxis()->CenterTitle();
@@ -1412,7 +1416,7 @@ int main(int argc, char *argv[])
     
     c36->cd(2);
     rinphi_hist->Draw("HIST B");
-    rinphi_hist->SetTitle("Phi of Neutrino Entrance Vector, E=10^20.00, N=2e6");
+    rinphi_hist->SetTitle("Phi of Neutrino Entrance Vector");
     rinphi_hist->GetXaxis()->SetTitle("phi");
     rinphi_hist->GetXaxis()->SetTitleOffset(1.0);
     rinphi_hist->GetXaxis()->CenterTitle();
@@ -1450,7 +1454,7 @@ int main(int argc, char *argv[])
     
      c37->cd(1);
      nuexitcostheta_hist->Draw("HIST B");
-     nuexitcostheta_hist->SetTitle("Cos(theta) of Neutrino Exit, E=10^20.00, N=2e6");
+     nuexitcostheta_hist->SetTitle("Cos(theta) of Neutrino Exit");
      nuexitcostheta_hist->GetXaxis()->SetTitle("cos(theta)");
      nuexitcostheta_hist->GetXaxis()->SetTitleOffset(1.0);
      nuexitcostheta_hist->GetXaxis()->CenterTitle();
@@ -1459,7 +1463,7 @@ int main(int argc, char *argv[])
      nuexitcostheta_hist->GetYaxis()->CenterTitle();
      c37->cd(2);
      nuexitphi_hist->Draw("HIST B");
-     nuexitphi_hist->SetTitle("Phi of Neutrino Exit, E=10^20.00, N=2e6");
+     nuexitphi_hist->SetTitle("Phi of Neutrino Exit");
      nuexitphi_hist->GetXaxis()->SetTitle("phi");
      nuexitphi_hist->GetXaxis()->SetTitleOffset(1.0);
      nuexitphi_hist->GetXaxis()->CenterTitle();
@@ -1491,7 +1495,7 @@ int main(int argc, char *argv[])
     gStyle->SetStatY(0.88);
     
     theta_vs_phi_hist->Draw("colz");
-    theta_vs_phi_hist->SetTitle("Theta vs Phi, E=10^20, N=2e6");
+    theta_vs_phi_hist->SetTitle("Theta vs Phi");
     theta_vs_phi_hist->GetXaxis()->SetTitle("theta");
     theta_vs_phi_hist->GetXaxis()->SetTitleOffset(1.0);
     theta_vs_phi_hist->GetXaxis()->CenterTitle();
@@ -1500,10 +1504,10 @@ int main(int argc, char *argv[])
     theta_vs_phi_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c38->SaveAs("Primaries/thetavsphi.png");
+    c38->SaveAs("Primaries/theta_vs_phi.png");
     gStyle->SetHistLineWidth(1);
-    c38->SaveAs("Primaries/thetavsphi.pdf");
-    c38->SaveAs("Primaries/thetavsphi.root");
+    c38->SaveAs("Primaries/theta_vs_phi.pdf");
+    c38->SaveAs("Primaries/theta_vs_phi.root");
     delete c38;
     
     AnitaFile->Close(); //close the file we loaded
