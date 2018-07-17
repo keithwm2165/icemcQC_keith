@@ -39,7 +39,12 @@ mkdir icefinal_root
 
 #name new commit of icemc
 commit=`git rev-parse --short HEAD`
+echo "commit (last verison): "
 echo $commit
+echo " "
+Date=`git log -1 --date=short --pretty=format:%cd`
+echo "commit date: "
+echo $Date
 
 #back to icemcQC_keith directory
 cd ../../
@@ -118,145 +123,145 @@ cd $commit
 for (( i=1;i <= $RUN_NO; i++))
 do
 cd plots$i
-mv altitude_int.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_altitude_int.pdf
-mv altitude_int.png Primaries_"$commit"_input_anita3_energy_"$energy"_altitude_int.png
-mv altitude_int.root Primaries_"$commit"_input_anita3_energy_"$energy"_altitude_int.root
+mv altitude_int.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_altitude_int.pdf
+mv altitude_int.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_altitude_int.png
+mv altitude_int.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_altitude_int.root
 
-mv posnu_xy.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_posnu_xy.pdf
-mv posnu_xy.png Primaries_"$commit"_input_anita3_energy_"$energy"_posnu_xy.png
-mv posnu_xy.root Primaries_"$commit"_input_anita3_energy_"$energy"_posnu_xy.root
+mv posnu_xy.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_posnu_xy.pdf
+mv posnu_xy.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_posnu_xy.png
+mv posnu_xy.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_posnu_xy.root
 
-mv r_fromballoon.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_r_fromballoon.pdf
-mv r_fromballoon.png Primaries_"$commit"_input_anita3_energy_"$energy"_r_fromballoon.png
-mv r_fromballoon.root Primaries_"$commit"_input_anita3_energy_"$energy"_r_fromballoon.root
+mv r_fromballoon.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_fromballoon.pdf
+mv r_fromballoon.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_fromballoon.png
+mv r_fromballoon.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_fromballoon.root
 
-mv nuflavorint.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_nuflavorint.pdf
-mv nuflavorint.png Primaries_"$commit"_input_anita3_energy_"$energy"_nuflavorint.png
-mv nuflavorint.root Primaries_"$commit"_input_anita3_energy_"$energy"_nuflavorint.root
+mv nuflavorint.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_nuflavorint.pdf
+mv nuflavorint.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_nuflavorint.png
+mv nuflavorint.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_nuflavorint.root
 
-mv r_fromballoon_sq.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_r_fromballoon_sq.pdf
-mv r_fromballoon_sq.png Primaries_"$commit"_input_anita3_energy_"$energy"_r_fromballoon_sq.png
-mv r_fromballoon_sq.root Primaries_"$commit"_input_anita3_energy_"$energy"_r_fromballoon_sq.root
+mv r_fromballoon_sq.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_fromballoon_sq.pdf
+mv r_fromballoon_sq.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_fromballoon_sq.png
+mv r_fromballoon_sq.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_fromballoon_sq.root
 
-mv r_fromballoon_vs_altitude_int.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_r_fromballoon_vs_altitude_int.pdf
-mv r_fromballoon_vs_altitude_int.png Primaries_"$commit"_input_anita3_energy_"$energy"_r_fromballoon_vs_altitude_int.png
-mv r_fromballoon_vs_altitude_int.root Primaries_"$commit"_input_anita3_energy_"$energy"_r_fromballoon_vs_altitude_int.root
+mv r_fromballoon_vs_altitude_int.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_fromballoon_vs_altitude_int.pdf
+mv r_fromballoon_vs_altitude_int.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_fromballoon_vs_altitude_int.png
+mv r_fromballoon_vs_altitude_int.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_fromballoon_vs_altitude_int.root
 
-mv r_fromballoon_sq_vs_altitude_int.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_r_fromballoon_sq_vs_altitude_int.pdf
-mv r_fromballoon_sq_vs_altitude_int.png Primaries_"$commit"_input_anita3_energy_"$energy"_r_fromballoon_sq_vs_altitude_int.png
-mv r_fromballoon_sq_vs_altitude_int.root Primaries_"$commit"_input_anita3_energy_"$energy"_r_fromballoon_sq_vs_altitude_int.root
+mv r_fromballoon_sq_vs_altitude_int.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_fromballoon_sq_vs_altitude_int.pdf
+mv r_fromballoon_sq_vs_altitude_int.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_fromballoon_sq_vs_altitude_int.png
+mv r_fromballoon_sq_vs_altitude_int.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_fromballoon_sq_vs_altitude_int.root
 
-mv fresnel1.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_fresnel1.pdf
-mv fresnel1.png Primaries_"$commit"_input_anita3_energy_"$energy"_fresnel1.png
-mv fresnel1.root Primaries_"$commit"_input_anita3_energy_"$energy"_fresnel1.root
+mv fresnel1.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_fresnel1.pdf
+mv fresnel1.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_fresnel1.png
+mv fresnel1.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_fresnel1.root
 
-mv fresnel2.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_fresnel2.pdf
-mv fresnel2.png Primaries_"$commit"_input_anita3_energy_"$energy"_fresnel2.png
-mv fresnel2.root Primaries_"$commit"_input_anita3_energy_"$energy"_fresnel2.root
+mv fresnel2.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_fresnel2.pdf
+mv fresnel2.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_fresnel2.png
+mv fresnel2.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_fresnel2.root
 
-mv currentint.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_currentint.pdf
-mv currentint.png Primaries_"$commit"_input_anita3_energy_"$energy"_currentint.png
-mv currentint.root Primaries_"$commit"_input_anita3_energy_"$energy"_currentint.root
+mv currentint.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_currentint.pdf
+mv currentint.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_currentint.png
+mv currentint.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_currentint.root
 
-mv dtryingdirection.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_dtryingdirection.pdf
-mv dtryingdirection.png Primaries_"$commit"_input_anita3_energy_"$energy"_dtryingdirection.png
-mv dtryingdirection.root Primaries_"$commit"_input_anita3_energy_"$energy"_dtryingdirection.root
+mv dtryingdirection.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_dtryingdirection.pdf
+mv dtryingdirection.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_dtryingdirection.png
+mv dtryingdirection.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_dtryingdirection.root
 
-mv chord_kgm2_bestcase.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_chord_kgm2_bestcase.pdf
-mv chord_kgm2_bestcase.png Primaries_"$commit"_input_anita3_energy_"$energy"_chord_kgm2_bestcase.png
-mv chord_kgm2_bestcase.root Primaries_"$commit"_input_anita3_energy_"$energy"_chord_kgm2_bestcase.root
+mv chord_kgm2_bestcase.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_chord_kgm2_bestcase.pdf
+mv chord_kgm2_bestcase.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_chord_kgm2_bestcase.png
+mv chord_kgm2_bestcase.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_chord_kgm2_bestcase.root
 
-mv weight_bestcase.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_weight_bestcase.pdf
-mv weight_bestcase.png Primaries_"$commit"_input_anita3_energy_"$energy"_weight_bestcase.png
-mv weight_bestcase.root Primaries_"$commit"_input_anita3_energy_"$energy"_weight_bestcase.root
+mv weight_bestcase.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_weight_bestcase.pdf
+mv weight_bestcase.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_weight_bestcase.png
+mv weight_bestcase.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_weight_bestcase.root
 
-mv logchord.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_logchord.pdf
-mv logchord.png Primaries_"$commit"_input_anita3_energy_"$energy"_logchord.png
-mv logchord.root Primaries_"$commit"_input_anita3_energy_"$energy"_logchord.root
+mv logchord.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_logchord.pdf
+mv logchord.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_logchord.png
+mv logchord.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_logchord.root
 
-mv r_exit2bn.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_r_exit2bn.pdf
-mv r_exit2bn.png Primaries_"$commit"_input_anita3_energy_"$energy"_r_exit2bn.png
-mv r_exit2bn.root Primaries_"$commit"_input_anita3_energy_"$energy"_r_exit2bn.root
+mv r_exit2bn.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_exit2bn.pdf
+mv r_exit2bn.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_exit2bn.png
+mv r_exit2bn.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_exit2bn.root
 
-mv r_exit2bn_measured.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_r_exit2bn_measured.pdf
-mv r_exit2bn_measured.png Primaries_"$commit"_input_anita3_energy_"$energy"_r_exit2bn_measured.png
-mv r_exit2bn_measured.root Primaries_"$commit"_input_anita3_energy_"$energy"_r_exit2bn_measured.root
+mv r_exit2bn_measured.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_exit2bn_measured.pdf
+mv r_exit2bn_measured.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_exit2bn_measured.png
+mv r_exit2bn_measured.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_exit2bn_measured.root
 
-mv nuexit.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_nuexit.pdf
-mv nuexit.png Primaries_"$commit"_input_anita3_energy_"$energy"_nuexit.png
-mv nuexit.root Primaries_"$commit"_input_anita3_energy_"$energy"_nuexit.root
+mv nuexit.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_nuexit.pdf
+mv nuexit.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_nuexit.png
+mv nuexit.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_nuexit.root
 
-mv nuexitice.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_nuexitice.pdf
-mv nuexitice.png Primaries_"$commit"_input_anita3_energy_"$energy"_nuexitice.png
-mv nuexitice.root Primaries_"$commit"_input_anita3_energy_"$energy"_nuexitice.root
+mv nuexitice.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_nuexitice.pdf
+mv nuexitice.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_nuexitice.png
+mv nuexitice.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_nuexitice.root
 
-mv costheta_nutraject.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_costheta_nutraject.pdf
-mv costheta_nutraject.png Primaries_"$commit"_input_anita3_energy_"$energy"_costheta_nutraject.png
-mv costheta_nutraject.root Primaries_"$commit"_input_anita3_energy_"$energy"_costheta_nutraject.root
+mv costheta_nutraject.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_costheta_nutraject.pdf
+mv costheta_nutraject.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_costheta_nutraject.png
+mv costheta_nutraject.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_costheta_nutraject.root
 
-mv d1.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_d1.pdf
-mv d1.png Primaries_"$commit"_input_anita3_energy_"$energy"_d1.png
-mv d1.root Primaries_"$commit"_input_anita3_energy_"$energy"_d1.root
+mv d1.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_d1.pdf
+mv d1.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_d1.png
+mv d1.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_d1.root
 
-mv d2.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_d2.pdf
-mv d2.png Primaries_"$commit"_input_anita3_energy_"$energy"_d2.png
-mv d2.root Primaries_"$commit"_input_anita3_energy_"$energy"_d2.root
+mv d2.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_d2.pdf
+mv d2.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_d2.png
+mv d2.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_d2.root
 
-mv d1+d2.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_d1+d2.pdf
-mv d1+d2.png Primaries_"$commit"_input_anita3_energy_"$energy"_d1+d2.png
-mv d1+d2.root Primaries_"$commit"_input_anita3_energy_"$energy"_d1+d2.root
+mv d1+d2.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_d1+d2.pdf
+mv d1+d2.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_d1+d2.png
+mv d1+d2.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_d1+d2.root
 
-mv nnu.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_nnu.pdf
-mv nnu.png Primaries_"$commit"_input_anita3_energy_"$energy"_nnu.png
-mv nnu.root Primaries_"$commit"_input_anita3_energy_"$energy"_nnu.root
+mv nnu.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_nnu.pdf
+mv nnu.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_nnu.png
+mv nnu.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_nnu.root
 
-mv theta.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_theta.pdf
-mv theta.png Primaries_"$commit"_input_anita3_energy_"$energy"_theta.png
-mv theta.root Primaries_"$commit"_input_anita3_energy_"$energy"_theta.root
+mv theta.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_theta.pdf
+mv theta.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_theta.png
+mv theta.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_theta.root
 
-mv r_in.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_r_in.pdf
-mv r_in.png Primaries_"$commit"_input_anita3_energy_"$energy"_r_in.png
-mv r_in.root Primaries_"$commit"_input_anita3_energy_"$energy"_r_in.root
+mv r_in.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_in.pdf
+mv r_in.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_in.png
+mv r_in.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_in.root
 
-mv r_enterice.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_r_enterice.pdf
-mv r_enterice.png Primaries_"$commit"_input_anita3_energy_"$energy"_r_enterice.png
-mv r_enterice.root Primaries_"$commit"_input_anita3_energy_"$energy"_r_enterice.root
+mv r_enterice.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_enterice.pdf
+mv r_enterice.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_enterice.png
+mv r_enterice.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_enterice.root
 
-mv chord.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_chord.pdf
-mv chord.png Primaries_"$commit"_input_anita3_energy_"$energy"_chord.png
-mv chord.root Primaries_"$commit"_input_anita3_energy_"$energy"_chord.root
+mv chord.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_chord.pdf
+mv chord.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_chord.png
+mv chord.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_chord.root
 
-mv deviewangle_deg.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_deviewangle_deg.pdf
-mv deviewangle_deg.png Primaries_"$commit"_input_anita3_energy_"$energy"_deviewangle_deg.png
-mv deviewangle_deg.root Primaries_"$commit"_input_anita3_energy_"$energy"_deviewangle_deg.root
+mv deviewangle_deg.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_deviewangle_deg.pdf
+mv deviewangle_deg.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_deviewangle_deg.png
+mv deviewangle_deg.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_deviewangle_deg.root
 
-mv n_exit_phi.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_n_exit_phi.pdf
-mv n_exit_phi.png Primaries_"$commit"_input_anita3_energy_"$energy"_n_exit_phi.png
-mv n_exit_phi.root Primaries_"$commit"_input_anita3_energy_"$energy"_n_exit_phi.root
+mv n_exit_phi.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_n_exit_phi.pdf
+mv n_exit_phi.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_n_exit_phi.png
+mv n_exit_phi.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_n_exit_phi.root
 
-mv mytheta.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_mytheta.pdf
-mv mytheta.png Primaries_"$commit"_input_anita3_energy_"$energy"_mytheta.png
-mv mytheta.root Primaries_"$commit"_input_anita3_energy_"$energy"_mytheta.root
+mv mytheta.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_mytheta.pdf
+mv mytheta.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_mytheta.png
+mv mytheta.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_mytheta.root
 
-mv mybeta.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_mybeta.pdf
-mv mybeta.png Primaries_"$commit"_input_anita3_energy_"$energy"_mybeta.png
-mv mybeta.root Primaries_"$commit"_input_anita3_energy_"$energy"_mybeta.root
+mv mybeta.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_mybeta.pdf
+mv mybeta.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_mybeta.png
+mv mybeta.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_mybeta.root
 
-mv theta_rf_atbn.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_theta_rf_atbn.pdf
-mv theta_rf_atbn.png Primaries_"$commit"_input_anita3_energy_"$energy"_theta_rf_atbn.png
-mv theta_rf_atbn.root Primaries_"$commit"_input_anita3_energy_"$energy"_theta_rf_atbn.root
+mv theta_rf_atbn.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_theta_rf_atbn.pdf
+mv theta_rf_atbn.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_theta_rf_atbn.png
+mv theta_rf_atbn.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_theta_rf_atbn.root
 
-mv nnu_costheta_cosphi.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_nnu_costheta_cosphi.pdf
-mv nnu_costheta_cosphi.png Primaries_"$commit"_input_anita3_energy_"$energy"_nnu_costheta_cosphi.png
-mv nnu_costheta_cosphi.root Primaries_"$commit"_input_anita3_energy_"$energy"_nnu_costheta_cosphi.root
+mv nnu_costheta_cosphi.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_nnu_costheta_cosphi.pdf
+mv nnu_costheta_cosphi.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_nnu_costheta_cosphi.png
+mv nnu_costheta_cosphi.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_nnu_costheta_cosphi.root
 
-mv rin_costheta_phi.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_rin_costheta_phi.pdf
-mv rin_costheta_phi.png Primaries_"$commit"_input_anita3_energy_"$energy"_rin_costheta_phi.png
-mv rin_costheta_phi.root Primaries_"$commit"_input_anita3_energy_"$energy"_rin_costheta_phi.root
+mv rin_costheta_phi.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_rin_costheta_phi.pdf
+mv rin_costheta_phi.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_rin_costheta_phi.png
+mv rin_costheta_phi.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_rin_costheta_phi.root
 
-mv theta_vs_phi.pdf Primaries_"$commit"_input_anita3_energy_"$energy"_theta_vs_phi.pdf
-mv theta_vs_phi.png Primaries_"$commit"_input_anita3_energy_"$energy"_theta_vs_phi.png
-mv theta_vs_phi.root Primaries_"$commit"_input_anita3_energy_"$energy"_theta_vs_phi.root
+mv theta_vs_phi.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_theta_vs_phi.pdf
+mv theta_vs_phi.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_theta_vs_phi.png
+mv theta_vs_phi.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_theta_vs_phi.root
 
 done
 
