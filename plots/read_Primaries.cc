@@ -567,7 +567,7 @@ int main(int argc, char *argv[])
     c11->Print("Primaries/dtryingdirection.png");
     gStyle->SetHistLineWidth(2);
     c11->Print("Primaries/dtryingdirection.pdf");
-    c11->Print("Primaries/Dtrying Direction.root");
+    c11->Print("Primaries/dtrying Direction.root");
     /* dtryingdirection = weighting factor: how many equivalent tries each neutrino counts for after having reduced angular phase space for possibly detectable events    */
     delete c11;
     
@@ -1184,7 +1184,7 @@ int main(int argc, char *argv[])
     dviewangle_deg_hist->GetYaxis()->CenterTitle();
     
     gStyle->SetHistLineWidth(9);
-    c30->Print("Primaries/deviewanle_deg.png");
+    c30->Print("Primaries/deviewangle_deg.png");
     gStyle->SetHistLineWidth(2);
     c30->Print("Primaries/deviewangle_deg.pdf");
     c30->Print("Primaries/deviewangle_deg.root");
