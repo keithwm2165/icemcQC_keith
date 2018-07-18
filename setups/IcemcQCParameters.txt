@@ -8,7 +8,7 @@ svnuser: hughes
 
 Setup files:
 #runs	filename. t x t
-1 inputs_anita3.txt
+4 inputs_anita3.txt
 
 Plotting files:
 script readPrimaries.cc
