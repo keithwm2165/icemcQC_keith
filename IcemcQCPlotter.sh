@@ -124,9 +124,9 @@ mv posnu_xy.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_posnu_
 mv posnu_xy.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_posnu_xy.png
 mv posnu_xy.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_posnu_xy.root
 
-mv r_fromballoon.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_fromballoon.pdf
-mv r_fromballoon.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_fromballoon.png
-mv r_fromballoon.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_fromballoon.root
+mv altitude_int.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_altitude_int.pdf
+mv altitude_int.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_altitude_int.png
+mv altitude_int.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_altitude_int.root
 
 mv nuflavorint.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_nuflavorint.pdf
 mv nuflavorint.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_nuflavorint.png
