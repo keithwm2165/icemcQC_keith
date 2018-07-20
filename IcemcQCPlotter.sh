@@ -32,10 +32,7 @@ cd icemc
 echo 'current directory:'
 pwd
 
-#In ICEMCQC_rundir/icemc directory
-#delete the past directory and create a new one
-rm -rf icefinal_root
-mkdir icefinal_root
+#Now the .root files are put together in outputs directory. Not necessary to create a new one
 
 #name new commit of icemc
 commit=`git rev-parse --short HEAD`
@@ -48,16 +45,16 @@ echo $Date
 
 #back to icemcQC_keith directory
 cd ../../
-mkdir $(eval echo $commit)
+mkdir $(eval echo $commit) #create a directory for plots named with commit and commit date
 
 cd ICEMCQC_rundir/icemc
 
-#In ICEMCQC_rundir/icemc directory
-for (( i = 1; i <= $RUN_NO; i++ ))
-    do
-    echo 'icefinal'$i'.root'
-    cp $current_dir/ICEMCQC_rundir/icemc/icemc_outputs$i/icefinal$i.root $current_dir/ICEMCQC_rundir/icemc/icefinal_root
-  done
+#In ICEMCQC_rundir/icemc directory (Past cp .root file, now are written in the same outputs directory)
+#for (( i = 1; i <= $RUN_NO; i++ ))
+#    do
+#    echo 'icefinal'$i'.root'
+#    cp $current_dir/ICEMCQC_rundir/icemc/icemc_outputs$i/icefinal$i.root $current_dir/ICEMCQC_rundir/icemc/icefinal_root
+#  done
 
 echo "  "
 
@@ -79,15 +76,12 @@ mkdir Primaries
 #compile read_Primaries.cc file to make plots
 make -f M.read_Primaries
 
-for ((i = 1;i <= $RUN_NO; i++ ))
-do
-
 #back to icemcQC_keith directory
 cd ../../
 #In commit directory
 cd $commit
 #In plots directory
-mkdir plots$i
+mkdir plots
 #back to icemcQC_keith directory
 cd ../
 
@@ -99,16 +93,16 @@ cd ICEMCQC_rundir/icemc/
 
 #echo "directory where plots are stored is: " $current_dir/$directory_name
 
-echo "directory where plots are stored is: "$current_dir/$commit/plots$i
+echo "directory where plots are stored is: "$current_dir/$commit/plots
 
-./read_Primaries icefinal_root/icefinal$i.root
+./read_Primaries outputs/icefinal*.root
+
 cd Primaries
-cp *.pdf $current_dir/$commit/plots$i
-cp *.png $current_dir/$commit/plots$i
-cp *.root $current_dir/$commit/plots$i
+cp *.pdf $current_dir/$commit/plots
+cp *.png $current_dir/$commit/plots
+cp *.root $current_dir/$commit/plots
 
 cd ../
-done
 
 echo "current directory: "
 pwd
@@ -120,12 +114,11 @@ cd ..
 
 #Here is the rename of the plots
 cd $commit
-for (( i=1;i <= $RUN_NO; i++))
-do
-cd plots$i
-mv altitude_int.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_altitude_int.pdf
-mv altitude_int.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_altitude_int.png
-mv altitude_int.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_altitude_int.root
+cd plots
+
+mv r_fromballoon.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_fromballoon.pdf
+mv r_fromballoon.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_fromballoon.png
+mv r_fromballoon.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_r_fromballoon.root
 
 mv posnu_xy.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_posnu_xy.pdf
 mv posnu_xy.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_posnu_xy.png
@@ -263,15 +256,13 @@ mv theta_vs_phi.pdf Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_th
 mv theta_vs_phi.png Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_theta_vs_phi.png
 mv theta_vs_phi.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_theta_vs_phi.root
 
-done
 
 #now put plots into website directory
-#cd plots 
 #cp *.pdf ./.
-#cd  Primariesplots
-#cp *.pdf /n/home00/hughes.525/public_html/closed_pages/plots/primaryplots
-
+cp *.pdf /n/home00/hughes.525/public_html/closed_pages/plots/primaryplots
 
 echo 'QCjobs complete! Good job!!!'
-cd $current_dir #back to icemcQC_keith
+echo 'Back to'$current_dir
+cd $current_dir       #back to icemcQC_keith
+
 return
