@@ -20,14 +20,16 @@ echo 'current directory: ' $updater_dir
 #commands to make icemc once it is installed
 
 #source environment variables and make file for doing so as well includes modules loaded for using on cluster without breaking. 
-export ROOTSYS=/users/PAS0174/osu8620/root-6.08.06
-export LD_INCLUDE_PATH=/users/PAS0174/osu8620/cint/libcint/build/include:$LD_INCLUDE_PATH
-module load fftw3/3.3.5
-module load gnu/6.3.0
-module load python/3.4.2
-module load cmake/3.7.2
-export CC=/usr/local/gcc/6.3.0/bin/gcc
-eval source /users/PAS0174/osu8620/root-6.08.06/builddir/bin/thisroot.sh
+#the OSC cluster changed; New shell environment written by Brain; We also need new shell envrionment if run on unity cluster.
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+module load cmake/3.11.4
+module load gnu/7.3.0
+export CC=`which gcc`
+export CXX=`which g++`
+export ROOTSYS=/fs/project/PAS0654/shared_software/anita/owens_pitzer/build/root
+eval 'source /fs/project/PAS0654/shared_software/anita/owens_pitzer/build/root/bin/thisroot.sh'
 export ICEMC_SRC_DIR=$path_dir/icemc
 export ICEMC_BUILD_DIR=$path_dir/icemc
 export LD_LIBRARY_PATH=${ICEMC_BUILD_DIR}:${LD_LIBRARY_PATH}
