@@ -258,8 +258,8 @@ mv theta_vs_phi.root Primaries_"$Date"_"$commit"_input_anita3_energy_"$energy"_t
 
 
 #now put plots into website directory
-#cp *.pdf ./.
-cp *.pdf /n/home00/hughes.525/public_html/closed_pages/plots/primaryplots
+#scp *.pdf @radiorm.physics.ohio-state.edu:/path/(path=/var/www/icemcqc/plots/)
+
 
 echo 'QCjobs complete! Good job!!!'
 echo 'Back to'$current_dir
