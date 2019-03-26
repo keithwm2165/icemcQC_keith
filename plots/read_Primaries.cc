@@ -267,7 +267,7 @@ int main(int argc, char *argv[])
     nuexitice_hist->GetYaxis()->SetTitleOffset(1.0);
     nuexitice_hist->GetYaxis()->CenterTitle();
     
-    costheta_nutraject_hist->SetTitle("Cos(theta) of Trajectory from Balloon Coordinate System");
+    costheta_nutraject_hist->SetTitle("Cos(theta) of Neutrinos from Balloon Coordinate System");
     costheta_nutraject_hist->GetXaxis()->SetTitle("cos(theta)");
     costheta_nutraject_hist->GetXaxis()->SetTitleOffset(1.0);
     costheta_nutraject_hist->GetXaxis()->CenterTitle();
