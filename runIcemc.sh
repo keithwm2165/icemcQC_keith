@@ -7,7 +7,7 @@
 
 cd $SRC_DIR
 
-source env_vars_icemcQC.sh
+source bashrc_anita.sh
 echo $ICEMC_SRC_DIR
 echo ' '
 cd $LOCALDIR/icemc
