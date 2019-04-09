@@ -53,7 +53,9 @@ if [ $findstat -eq 1 ]; then
      echo "found icemc"
      echo " "
      cd $path_dir/icemc
-     git pull &>> $updater_dir/log_icemc_changes.txt
+     git pull origin master &>> $updater_dir/log_icemc_changes.txt
+     sed -i 's/ANITA3_EVENTREADER=1/#ANITA3_EVENTREADER=1/' Makefile
+     sed -i 's/ANITA3_EVENTCORRELATOR=1/#ANITA3_EVENTCORRELATOR=1/' Makefile
      make clean
      make &>> log_makeicemc_output.txt
      git log &> log_commit_history.txt
