@@ -27,7 +27,7 @@ cp env_vars_icemcQC.sh $script_path/$rundir/env_vars_icemcQC.sh
 cp IcemcQCSubmit.sh $script_path/$rundir/IcemcQCSubmit.sh
 cp IcemcQCPlotter.sh $script_path/$rundir/IcemcQCPlotter.sh
 cp IcemcQCSorter.sh $script_path/$rundir/IcemcQCSorter.sh
-cp runIcemc_new.sh $script_path/$rundir/runIcemc.sh
+cp runIcemc.sh $script_path/$rundir/runIcemc.sh
 
 cp setups/* $script_path/$rundir/.
 cp plots/* $script_path/$rundir/.
