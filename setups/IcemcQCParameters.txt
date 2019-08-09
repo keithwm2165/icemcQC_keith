@@ -7,7 +7,7 @@ tgtdir: outputs
 svnuser: hughes 
 
 Setup files:
-#runs	filename.txt
+#runs	filename. t x t
 10 inputs_anita3.txt
 
 Plotting files:
