@@ -1,5 +1,5 @@
 # icemcQC_keith
-Quality Control for icemc. This is integrated from hughes (which was for svn). This repo is for testing and editing only.
+Quality Control for icemc. This is integrated from Hughes (which was for svn). This repo is for testing and editing only.
 
 The code should work as follows: 
 
