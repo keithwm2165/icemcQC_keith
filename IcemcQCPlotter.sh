@@ -98,7 +98,7 @@ echo "directory where plots are stored is: "$current_dir/$commit/plots
 ./read_Primaries outputs/icefinal*.root
 
 # change the output directory name in case the plots are replicated
-mv outputs/ outputs_"$Date"
+mv outputs outputs_"$Date"
 
 cd Primaries
 cp *.pdf $current_dir/$commit/plots
