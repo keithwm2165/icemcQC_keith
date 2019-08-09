@@ -11,7 +11,7 @@ Setup files:
 10 inputs_anita3_20.txt
 
 Plotting files:
-script readPrimaries.cc
+script read_Primaries.cc
 
 dwell: 20 
 
