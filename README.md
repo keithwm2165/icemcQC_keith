@@ -15,4 +15,11 @@ In order to run icemcQC, a number of changes need to be made before the main com
 1. edit the file "env_.sh" to include the correct paths of the environmental variables 
      - namely ROOTSYS needs to be correctly defined
 
-2. 
+How to use icemcQC_V_N:
+
+1. upzip this directory after download icemcQC_keith
+2. put bash_profile and bash_anita.sh into your home directory where you are ready to run QC (OSC cluster required)
+3. change the path of bash_profile and bash_anita.sh to your own path on OSC
+4. download icemc and put rest files in icemcQC_V_N into icemc directory
+5. source QCSubmit.sh "energy" to run and submit icemc jobs
+6. source QCPlotter.sh "branch" "energy" to make plots
